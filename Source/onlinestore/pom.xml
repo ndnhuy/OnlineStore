@@ -8,6 +8,10 @@
   <name>onlinestore Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
+  <properties>
+  	<postgresql-jdbc-driver>9.1-901-1.jdbc4</postgresql-jdbc-driver>
+  </properties>
+  
   <parent>
   	<groupId>org.springframework.boot</groupId>
   	<artifactId>spring-boot-starter-parent</artifactId>
@@ -19,19 +23,39 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
         <exclusions>
-	        <exclusion>
-	          <groupId>javax.servlet</groupId>
-	          <artifactId>javax.servlet-api</artifactId>
-	        </exclusion>
-	        <exclusion>
-	          <groupId>javax.servlet.jsp</groupId>
-	          <artifactId>jsp-api</artifactId>
-	        </exclusion>
-	        <exclusion>
-	          <groupId>javax.el</groupId>
-	          <artifactId>javax.el-api</artifactId>
-	        </exclusion>
-      	</exclusions> 
+        <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+    </exclusions>
+    </dependency>
+    
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-log4j</artifactId>
+	</dependency>
+    
+    <dependency>
+		<groupId> org.springframework.boot</groupId>
+		<artifactId>spring-boot-actuator</artifactId>
+	</dependency>
+	
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    
+    
+    <!-- postgresql -->
+    <dependency>
+		<groupId>postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>${postgresql-jdbc-driver}</version>
+	</dependency>
+    
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
     </dependency>
   </dependencies>
   <build>
