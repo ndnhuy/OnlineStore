@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Customer implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_id_seq")
-	@SequenceGenerator(name="customer_id_seq", sequenceName="customer_id_seq", allocationSize=100)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
 	private Integer id;
 	
 	@Column(name="name")

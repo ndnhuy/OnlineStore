@@ -57,6 +57,15 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
     </dependency>
+    
+    <!-- Dozer -->
+    <dependency>
+		<groupId>net.sf.dozer</groupId>
+		<artifactId>dozer</artifactId>
+		<version>5.5.1</version>
+	</dependency>
+    
+    
   </dependencies>
   <build>
     <plugins>

@@ -2,9 +2,11 @@ package com.ndnhuy.onlinestore.domain.domainservice;
 
 import java.util.Collection;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ndnhuy.onlinestore.app.dto.CustomerDto;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 import com.ndnhuy.onlinestore.repository.CustomerRepository;
 
@@ -13,6 +15,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerRepository customerRepo;
+	
+	@Autowired
+	private DozerBeanMapper mapper;
 
 	@Override
 	public Customer getCustomer(Integer id) {
@@ -22,6 +27,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Collection<Customer> getCustomers() {
 		return customerRepo.findAll();
+	}
+
+	@Override
+	public void add(CustomerDto addedCustomerDto) {
+		customerRepo.save(mapper.map(addedCustomerDto, Customer.class));
 	}
 	
 	
