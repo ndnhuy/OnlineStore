@@ -7,6 +7,6 @@ import com.ndnhuy.onlinestore.domain.entity.Customer;
 
 public interface CustomerService {
 	Customer getCustomer(Integer id);
-	Collection<Customer> getCustomers();
+	Collection<Customer> getAll();
 	void add(CustomerDto addedCustomerDto);
 }

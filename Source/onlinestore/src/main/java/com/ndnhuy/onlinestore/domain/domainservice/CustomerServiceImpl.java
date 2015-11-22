@@ -2,6 +2,8 @@ package com.ndnhuy.onlinestore.domain.domainservice;
 
 import java.util.Collection;
 
+import javax.transaction.Transactional;
+
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +27,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Collection<Customer> getCustomers() {
+	public Collection<Customer> getAll() {
 		return customerRepo.findAll();
 	}
 
 	@Override
+	@Transactional
 	public void add(CustomerDto addedCustomerDto) {
 		customerRepo.save(mapper.map(addedCustomerDto, Customer.class));
 	}

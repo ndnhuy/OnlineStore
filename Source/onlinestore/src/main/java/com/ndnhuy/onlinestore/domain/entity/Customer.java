@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="customer")
@@ -19,14 +21,17 @@ public class Customer implements Serializable {
 	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
 	private Integer id;
 	
-	@Column(name="name")
+	@Column(name="name", unique=true)
+	@NotNull
 	private String name;
 	
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	private String email;
 	
 	@Column(name="password")
+	@NotNull
 	private String password;
+	
 
 	public Integer getId() {
 		return id;

@@ -15,6 +15,7 @@ import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 
 @RestController
+@RequestMapping("/customers")
 public class CustomerController {
 	
 	@Autowired
@@ -23,17 +24,23 @@ public class CustomerController {
 	@Autowired
 	private DozerBeanMapper mapper;
 	
-	@RequestMapping(value="/customers", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<CustomerDto> getCustomers() {
 		List<CustomerDto> customers = new ArrayList<CustomerDto>();
-		for (Customer customer : customerService.getCustomers()) {	
+		for (Customer customer : customerService.getAll()) {	
 			customers.add(mapper.map(customer, CustomerDto.class));
 		}
 		return customers;
 	}
 	
-	@RequestMapping(value="/customers", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public void addCustomer(@RequestBody CustomerDto dto) {
 		customerService.add(dto);
 	}
+	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public String test() {
+		return "WELCOME TO TEST";
+	}
+	
 }
