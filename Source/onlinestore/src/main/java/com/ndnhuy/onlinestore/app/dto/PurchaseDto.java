@@ -7,7 +7,7 @@ public class PurchaseDto {
 	@Mapping("id")
 	private Integer id;
 	
-	@Mapping("customer.id")
+	
 	private Integer customerId;
 	public Integer getId() {
 		return id;
@@ -15,9 +15,12 @@ public class PurchaseDto {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	@Mapping("customer.id")
 	public Integer getCustomerId() {
 		return customerId;
 	}
+	
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}

@@ -1,16 +1,24 @@
 package com.ndnhuy.onlinestore.domain.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.cfg.context.Cascadable;
+
+import com.ndnhuy.onlinestore.annotation.Unique;
 
 @Entity
 @Table(name="customer")
@@ -21,7 +29,8 @@ public class Customer implements Serializable {
 	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
 	private Integer id;
 	
-	@Column(name="name", unique=true)
+	@Column(name="name")
+	@Unique(columnName="name", entityType=Customer.class)
 	@NotNull
 	private String name;
 	
@@ -32,6 +41,16 @@ public class Customer implements Serializable {
 	@NotNull
 	private String password;
 	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer", cascade=CascadeType.ALL)
+	private Collection<Purchase> purchases;
+	
+	public Collection<Purchase> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(Collection<Purchase> purchases) {
+		this.purchases = purchases;
+	}
 
 	public Integer getId() {
 		return id;

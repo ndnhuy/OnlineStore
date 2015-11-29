@@ -1,24 +1,38 @@
 package com.ndnhuy.onlinestore.config;
 
-import java.util.Arrays;
+import java.util.Locale;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.ndnhuy.onlinestore.app.dto.CustomerDto;
+import com.ndnhuy.onlinestore.app.service.CustomerController;
+import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
+import com.ndnhuy.onlinestore.domain.domainservice.CustomerServiceImpl;
+import com.ndnhuy.onlinestore.domain.entity.Customer;
+
 
 @ComponentScan("com.ndnhuy.onlinestore")
-@Import(OnlineStoreConfig.class)
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages="com.ndnhuy.onlinestore.repository")
 @EntityScan("com.ndnhuy.onlinestore.domain.entity")
 public class SpringApplicationRunner extends SpringBootServletInitializer {
+	
+	private static final Logger logger = Logger.getLogger(SpringApplicationRunner.class);
 	
 	 @Override
 	protected SpringApplicationBuilder configure(

@@ -1,6 +1,10 @@
 package com.ndnhuy.onlinestore.app.dto;
 
+import java.util.Collection;
+
 import org.dozer.Mapping;
+
+import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 public class CustomerDto {
 	
@@ -16,6 +20,15 @@ public class CustomerDto {
 	@Mapping("password")
 	private String password;
 	
+	@Mapping("purchases")
+	private Collection<PurchaseDto> purchases;
+	
+	public Collection<PurchaseDto> getPurchases() {
+		return purchases;
+	}
+	public void setPurchases(Collection<PurchaseDto> purchases) {
+		this.purchases = purchases;
+	}
 	public Integer getId() {
 		return id;
 	}

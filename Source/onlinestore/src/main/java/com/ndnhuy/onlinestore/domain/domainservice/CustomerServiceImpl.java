@@ -2,40 +2,35 @@ package com.ndnhuy.onlinestore.domain.domainservice;
 
 import java.util.Collection;
 
-import javax.transaction.Transactional;
+import javax.validation.Valid;
 
-import org.dozer.DozerBeanMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ndnhuy.onlinestore.app.dto.CustomerDto;
+import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
-import com.ndnhuy.onlinestore.repository.CustomerRepository;
+import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDto, Integer> implements CustomerService {
 	
-	@Autowired
-	private CustomerRepository customerRepo;
-	
-	@Autowired
-	private DozerBeanMapper mapper;
-
 	@Override
-	public Customer getCustomer(Integer id) {
-		return customerRepo.findOne(id);
+	public CustomerDto add(CustomerDto dto) {
+		
+		Customer customer = mapper.map(dto, Customer.class);
+		
+		if (customer.getPurchases() != null) {
+			for (Purchase p : customer.getPurchases()) {
+				p.setCustomer(customer);
+			}
+		}
+		
+		validator.validate(customer);
+		
+		repository.saveAndFlush(customer);
+		
+		return mapper.map(customer, CustomerDto.class);
 	}
 
-	@Override
-	public Collection<Customer> getAll() {
-		return customerRepo.findAll();
-	}
-
-	@Override
-	@Transactional
-	public void add(CustomerDto addedCustomerDto) {
-		customerRepo.save(mapper.map(addedCustomerDto, Customer.class));
-	}
-	
 	
 }

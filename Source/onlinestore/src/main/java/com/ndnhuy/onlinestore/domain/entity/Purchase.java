@@ -19,9 +19,8 @@ public class Purchase {
 	private Integer id;
 	
 	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="id")
-//	private Customer customer;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Customer customer;
 	
 	public Integer getId() {
 		return id;
@@ -31,13 +30,13 @@ public class Purchase {
 		this.id = id;
 	}
 
-//	public Customer getCustomer() {
-//		return customer;
-//	}
-//
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	
 	
 	
