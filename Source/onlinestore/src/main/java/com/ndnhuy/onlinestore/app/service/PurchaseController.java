@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ndnhuy.onlinestore.app.dto.PurchaseDto;
+import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.PurchaseService;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 

@@ -12,6 +12,14 @@
   	<postgresql-jdbc-driver>9.1-901-1.jdbc4</postgresql-jdbc-driver>
   </properties>
   
+  <repositories>
+    <repository>
+	   <id>repository.springframework.maven.milestone</id>
+	   <name>Spring Framework Maven Milestone Repository</name>
+	   <url>http://maven.springframework.org/milestone/</url>
+	</repository> 
+  </repositories>
+  
   <parent>
   	<groupId>org.springframework.boot</groupId>
   	<artifactId>spring-boot-starter-parent</artifactId>
@@ -23,11 +31,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
         <exclusions>
-        <exclusion>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </exclusion>
-    </exclusions>
+	        <exclusion>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-logging</artifactId>
+	        </exclusion>
+    	</exclusions>
     </dependency>
     
     <dependency>
@@ -53,7 +61,6 @@
    	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-oxm</artifactId>
-		<version>3.0.4.RELEASE</version>
 	</dependency>
 	
 	<dependency>
@@ -62,8 +69,21 @@
 		<version>1.4.8</version>
 	</dependency>
 	
-   	
-    
+	<dependency>
+	  <groupId>org.springframework.sync</groupId>
+	  <artifactId>spring-sync</artifactId>
+	  <version>1.0.0.M1</version>
+	  <exclusions>
+	        <exclusion>
+	            <groupId>com.fasterxml.jackson.core</groupId>
+	            <artifactId>jackson-databind</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-api</artifactId>
+	        </exclusion>
+    	</exclusions>
+	</dependency>
     
     <!-- postgresql -->
     <dependency>

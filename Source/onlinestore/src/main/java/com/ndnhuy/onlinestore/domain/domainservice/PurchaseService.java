@@ -2,7 +2,7 @@ package com.ndnhuy.onlinestore.domain.domainservice;
 
 import java.util.List;
 
-import com.ndnhuy.onlinestore.app.dto.PurchaseDto;
+import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 
 public interface PurchaseService {
 	PurchaseDto getPurchase(Integer id);

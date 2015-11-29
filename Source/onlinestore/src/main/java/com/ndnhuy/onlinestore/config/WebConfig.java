@@ -1,12 +1,8 @@
 package com.ndnhuy.onlinestore.config;
 
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
-import org.springframework.oxm.xstream.XStreamMarshaller;
+import org.springframework.sync.diffsync.web.JsonPatchHttpMessageConverter;
 
 @Configuration
 public class WebConfig {
@@ -23,4 +19,9 @@ public class WebConfig {
 // 
 //        return xmlConverter;
 //	}
+	
+	@Bean
+	public JsonPatchHttpMessageConverter jsonPatchMessageConverter() {
+		return new JsonPatchHttpMessageConverter();
+	}
 }

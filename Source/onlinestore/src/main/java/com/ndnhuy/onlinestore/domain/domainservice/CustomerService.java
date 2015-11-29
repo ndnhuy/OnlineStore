@@ -1,7 +1,7 @@
 package com.ndnhuy.onlinestore.domain.domainservice;
 
 
-import com.ndnhuy.onlinestore.app.dto.CustomerDto;
+import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 
 /**

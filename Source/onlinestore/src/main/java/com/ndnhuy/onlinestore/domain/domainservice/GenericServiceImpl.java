@@ -49,7 +49,13 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 	public D findOne(ID id) {
 		if (logger.isDebugEnabled())
 			logger.debug("Find " + entityType.getName() + " has id " + id);
-		return mapper.map(repository.findOne(id), dtoType);
+		
+		E e = repository.findOne(id);
+		if (e == null) {
+			throw new RuntimeException(entityType.getName() + " [id=" + id + "] " + " does not exist");
+		}
+		
+		return mapper.map(e, dtoType);
 	}
 
 	@Override

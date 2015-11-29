@@ -1,12 +1,6 @@
 package com.ndnhuy.onlinestore.config;
 
-import java.util.Locale;
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -14,16 +8,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.sync.Diff;
+import org.springframework.sync.Patch;
 
-import com.ndnhuy.onlinestore.app.dto.CustomerDto;
-import com.ndnhuy.onlinestore.app.service.CustomerController;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerServiceImpl;
-import com.ndnhuy.onlinestore.domain.entity.Customer;
+import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 
 
 @ComponentScan("com.ndnhuy.onlinestore")
@@ -43,5 +33,21 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	
 	 public static void main(String[] args) {
 	        ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
+	        
+	        CustomerDto original = new CustomerDto();
+	        original.setEmail("A");
+	        original.setId(1);
+	        original.setName("BBBB");
+	        
+	        CustomerDto modified = new CustomerDto();
+	        modified.setEmail("A");
+	        modified.setId(1);
+	        modified.setName("B");
+	        
+	        Patch patch = Diff.diff(original, modified);
+	        
+	        CustomerDto patched = patch.apply(original, CustomerDto.class);
+	        
+	        System.out.println(ToStringBuilder.reflectionToString(patch));
 	 }
 }

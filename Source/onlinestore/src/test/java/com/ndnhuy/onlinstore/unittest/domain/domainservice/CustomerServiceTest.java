@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ndnhuy.onlinestore.app.dto.CustomerDto;
+import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
 import com.ndnhuy.onlinestore.config.OnlineStoreConfig;
 import com.ndnhuy.onlinestore.config.SpringApplicationRunner;

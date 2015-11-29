@@ -11,7 +11,7 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ndnhuy.onlinestore.app.dto.PurchaseDto;
+import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 import com.ndnhuy.onlinestore.repository.PurchaseRepository;
 
