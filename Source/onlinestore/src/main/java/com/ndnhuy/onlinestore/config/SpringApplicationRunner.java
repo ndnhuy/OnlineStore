@@ -1,6 +1,11 @@
 package com.ndnhuy.onlinestore.config;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,10 +15,16 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.sync.Diff;
-import org.springframework.sync.Patch;
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
+import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
+import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
+import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
+import com.ndnhuy.onlinestore.domain.domainservice.CustomerServiceImpl;
+import com.ndnhuy.onlinestore.domain.entity.Customer;
+import com.ndnhuy.onlinestore.domain.entity.Purchase;
+import com.ndnhuy.onlinestore.repository.CustomerRepository;
 
 
 @ComponentScan("com.ndnhuy.onlinestore")
@@ -34,20 +45,14 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	        ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	        
-	        CustomerDto original = new CustomerDto();
-	        original.setEmail("A");
-	        original.setId(1);
-	        original.setName("BBBB");
-	        
-	        CustomerDto modified = new CustomerDto();
-	        modified.setEmail("A");
-	        modified.setId(1);
-	        modified.setName("B");
-	        
-	        Patch patch = Diff.diff(original, modified);
-	        
-	        CustomerDto patched = patch.apply(original, CustomerDto.class);
-	        
-	        System.out.println(ToStringBuilder.reflectionToString(patch));
+//	        CustomerDto dto = new CustomerDto();
+//	        dto.setEmail("A867201@gmail.com");
+//	        dto.setName("A");
+//	        dto.setPassword("pass");
+//	        dto.setPurchases(null);
+//	        
+//	        ValidatorUtil validator = ctx.getBean(ValidatorUtil.class);
+//	        
+//	        validator.checkIfFieldValueIsUniqueInRepo(dto, Customer.class);
 	 }
 }

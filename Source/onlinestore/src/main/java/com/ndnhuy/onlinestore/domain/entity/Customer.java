@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.cfg.context.Cascadable;
 
-import com.ndnhuy.onlinestore.annotation.Unique;
+import com.ndnhuy.onlinestore.annotation.UniqueInRepository;
 
 @Entity
 @Table(name="customer")
@@ -30,14 +30,14 @@ public class Customer implements Serializable {
 	private Integer id;
 	
 	@Column(name="name")
-	@Unique(columnName="name", entityType=Customer.class)
 	@NotNull
 	private String name;
 	
-	@Column(name="email", unique=true)
+	@Column(name="email")
+	@NotNull
 	private String email;
 	
-	@Column(name="password")
+	@Column(name="password", unique=true)
 	@NotNull
 	private String password;
 	

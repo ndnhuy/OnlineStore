@@ -5,8 +5,10 @@ import java.util.Collection;
 
 import org.dozer.Mapping;
 
+import com.ndnhuy.onlinestore.annotation.UniqueInRepository;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
+
 
 public class CustomerDto implements Serializable {
 	
@@ -14,9 +16,11 @@ public class CustomerDto implements Serializable {
 	private Integer id;
 	
 	@Mapping("name")
+	@UniqueInRepository
 	private String name;
 	
 	@Mapping("email")
+	@UniqueInRepository
 	private String email;
 	
 	@Mapping("password")

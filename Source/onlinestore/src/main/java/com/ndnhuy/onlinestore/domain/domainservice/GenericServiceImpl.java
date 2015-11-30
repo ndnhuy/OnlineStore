@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.sync.Patch;
 
 import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
 
@@ -122,8 +123,15 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 			logger.error("The error occured when call method " + method.getName(), e);
 		}
 		
-		
-		
 		return null;
+	}
+	
+	@Override
+	public D updateChanges(ID id, Patch partialChanges) {
+		D originalDto = findOne(id);
+		D modifiedDto = partialChanges.apply(originalDto, dtoType);
+		
+		return add(modifiedDto);
+		
 	}
 }

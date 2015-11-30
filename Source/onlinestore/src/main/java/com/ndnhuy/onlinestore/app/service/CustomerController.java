@@ -64,11 +64,7 @@ public class CustomerController {
 //		logger.info("Partially update customer " + id + " [" + logFields + "] with given DTO [" + ToStringBuilder.reflectionToString(dto) + "]");
 		logger.info("Partially update customer " + id + " s: " + ToStringBuilder.reflectionToString(patch));
 		
-		
-		CustomerDto ori = customerService.findOne(id);
-		CustomerDto dto = patch.apply(ori, CustomerDto.class);
-		
-		return null;
+		return customerService.updateChanges(id, patch);
 	}
 	
 }

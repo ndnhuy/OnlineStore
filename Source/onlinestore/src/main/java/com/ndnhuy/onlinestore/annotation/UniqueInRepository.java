@@ -11,17 +11,9 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target( { METHOD, FIELD})
+@Target( {FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = UniqueValidator.class)
 @Documented
-public @interface Unique {
-	String message() default "{com.ndnhuy.onlinestore.annotation.Unique.message}";
-
-    Class<?>[] groups() default {};
-
-    Class<? extends Payload>[] payload() default {};
-    
-    String columnName();
-    Class<?> entityType();
+public @interface UniqueInRepository {
+	String message() default "must be unique, this value already existed";
 }
