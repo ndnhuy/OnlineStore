@@ -12,8 +12,8 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 	@Override
 	public CustomerDto add(CustomerDto dto) {
 		
-		validator.checkIfFieldValueIsUniqueInRepo(dto, Customer.class);
-
+		validator.validate(dto);
+		
 		Customer customer = mapper.map(dto, Customer.class);
 		
 		if (customer.getPurchases() != null) {
@@ -23,6 +23,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		}
 		
 		validator.validate(customer);
+		validator.checkIfFieldValueIsUniqueInRepo(dto, Customer.class);
 		
 		repository.saveAndFlush(customer);
 		

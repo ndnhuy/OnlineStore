@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -47,12 +48,11 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	        
 //	        CustomerDto dto = new CustomerDto();
 //	        dto.setEmail("A867201@gmail.com");
-//	        dto.setName("A");
+//	        dto.setName("5465");
 //	        dto.setPassword("pass");
 //	        dto.setPurchases(null);
 //	        
-//	        ValidatorUtil validator = ctx.getBean(ValidatorUtil.class);
-//	        
-//	        validator.checkIfFieldValueIsUniqueInRepo(dto, Customer.class);
+//	        CustomerServiceImpl service = ctx.getBean(CustomerServiceImpl.class);
+//	        service.add(dto);
 	 }
 }

@@ -52,16 +52,35 @@ public class CustomerServiceTest {
 	}
 	
 	@Test
-	public void add_theNameDoesAlreadyExist_shouldThrowException() {
+	public void add_customerHasNoPurchases_shouldSucceed() {
+		CustomerDto customerHasExistedName = new CustomerDto();
+		customerHasExistedName.setEmail("exampleEmail@gmail.com");
+		customerHasExistedName.setName("exampleName");
+		customerHasExistedName.setPassword("password");
+		customerHasExistedName.setPurchases(null);
 		
-		CustomerDto customerHasExistedname = new CustomerDto();
-		customerHasExistedname.setEmail("exampleEmail@gmail.com");
-		customerHasExistedname.setName("exampleName");
-		customerHasExistedname.setPassword("password");
-		customerHasExistedname.setPurchases(null);
+		customerService.add(customerHasExistedName);
 		
-		customerService.add(customerHasExistedname);
-		
-		Mockito.verify(validator, Mockito.times(1)).validate(Mockito.any(Customer.class));
+		Mockito.verify(validator, Mockito.times(2)).validate(Mockito.anyObject());
+		Mockito.verify(validator, Mockito.times(1)).checkIfFieldValueIsUniqueInRepo(customerHasExistedName, Customer.class);
+		Mockito.verify(customerRepo, Mockito.times(1)).saveAndFlush(Mockito.any(Customer.class));
 	}
+	
+	@Test
+	public void add_theNameDoesAlreadyExist_shouldThrowExceptionWhileValidating() {
+				
+		CustomerDto customerHasExistedName = new CustomerDto();
+		customerHasExistedName.setEmail("exampleEmail@gmail.com");
+		customerHasExistedName.setName("exampleName");
+		customerHasExistedName.setPassword("password");
+		customerHasExistedName.setPurchases(null);
+		
+		ex.expect(RuntimeException.class);
+		
+		Mockito.doThrow(new RuntimeException()).when(validator).checkIfFieldValueIsUniqueInRepo(customerHasExistedName, Customer.class);
+		
+		customerService.add(customerHasExistedName);
+	}
+	
+	
 }

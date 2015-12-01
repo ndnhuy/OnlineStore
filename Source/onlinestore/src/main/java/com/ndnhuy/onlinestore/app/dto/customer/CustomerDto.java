@@ -3,11 +3,13 @@ package com.ndnhuy.onlinestore.app.dto.customer;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.validation.constraints.Size;
+
 import org.dozer.Mapping;
+import org.hibernate.validator.constraints.Email;
 
 import com.ndnhuy.onlinestore.annotation.UniqueInRepository;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 
 public class CustomerDto implements Serializable {
@@ -17,10 +19,13 @@ public class CustomerDto implements Serializable {
 	
 	@Mapping("name")
 	@UniqueInRepository
+	@Size(min = 0, max = 10, message = "'name' " + "{javax.validation.constraints.Size.message}")
 	private String name;
 	
 	@Mapping("email")
 	@UniqueInRepository
+	@Size(min = 0, max = 20, message = "'email' " + "{javax.validation.constraints.Size.message}")
+	@Email
 	private String email;
 	
 	@Mapping("password")

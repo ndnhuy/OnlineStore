@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.app.service;
+package com.ndnhuy.onlinestore.app.service.purchase;
 
 import java.util.List;
 
