@@ -85,12 +85,12 @@
     	</exclusions>
 	</dependency>
     
-    <!-- postgresql -->
     <dependency>
-		<groupId>postgresql</groupId>
+		<groupId>org.postgresql</groupId>
 		<artifactId>postgresql</artifactId>
-		<version>${postgresql-jdbc-driver}</version>
+		<version>9.4-1204-jdbc41</version>
 	</dependency>
+
     
     <dependency>
         <groupId>com.h2database</groupId>
@@ -102,6 +102,13 @@
 		<groupId>net.sf.dozer</groupId>
 		<artifactId>dozer</artifactId>
 		<version>5.5.1</version>
+	</dependency>
+    
+    <!-- hibernate-c3p0 -->
+    <dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-c3p0</artifactId>
+		<version>4.3.11.Final</version>
 	</dependency>
     
     

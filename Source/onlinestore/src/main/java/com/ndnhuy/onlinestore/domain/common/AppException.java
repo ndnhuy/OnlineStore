@@ -6,6 +6,13 @@ public class AppException extends RuntimeException {
 	private String developerMessage;
 	private Exception exception;
 	
+	public AppException(Integer status, String userMessage, String developerMessage) {
+		this.status = status;
+		this.userMessage = userMessage;
+		this.developerMessage = developerMessage;
+		this.exception = null;
+	}
+	
 	public AppException(Integer status, String userMessage, String developerMessage, Exception e) {
 		super(e);
 		this.status = status;

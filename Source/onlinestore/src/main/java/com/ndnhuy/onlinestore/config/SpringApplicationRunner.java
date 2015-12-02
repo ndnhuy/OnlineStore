@@ -1,12 +1,5 @@
 package com.ndnhuy.onlinestore.config;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,16 +9,8 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
-import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
-import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
-import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerServiceImpl;
-import com.ndnhuy.onlinestore.domain.entity.Customer;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.repository.CustomerRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
 @ComponentScan("com.ndnhuy.onlinestore")
@@ -46,13 +31,21 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	        ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	        
-//	        CustomerDto dto = new CustomerDto();
-//	        dto.setEmail("A867201@gmail.com");
-//	        dto.setName("5465");
-//	        dto.setPassword("pass");
-//	        dto.setPurchases(null);
+//	        DriverManagerDataSource ds = new DriverManagerDataSource();
+//	        ds.setDriverClassName("org.postgresql.Driver");
+//	        ds.setUrl("jdbc:postgresql://pellefant.db.elephantsql.com:5432/jmqxmnjv");
+//	        ds.setUsername("jmqxmnjv");
+//	        ds.setPassword("uC4eRC5K8MV_iyqiBKDAA5XwNHvIF-Sx");
 //	        
-//	        CustomerServiceImpl service = ctx.getBean(CustomerServiceImpl.class);
-//	        service.add(dto);
+//	        JdbcTemplate jt = new JdbcTemplate(ds);
+//	        
+//	        jt.execute("create table elephant (id int, name varchar)");
+//	        jt.execute("insert into elephant (id, name) values (1, 'elephant_1')");
+//	        jt.execute("insert into elephant (id, name) values (2, 'elephant_2')");   
+//	        
+//	        Object[] parameters = new Object[] {new Integer(2)};
+//	        Object o = jt.queryForObject("select name from elephant where id = ?",
+//	          parameters, String.class);
+//	        System.out.println((String)o);
 	 }
 }

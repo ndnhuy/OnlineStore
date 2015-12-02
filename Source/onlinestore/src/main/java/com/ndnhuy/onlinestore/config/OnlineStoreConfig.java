@@ -1,9 +1,12 @@
 package com.ndnhuy.onlinestore.config;
 
+import javax.sql.DataSource;
+
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
 import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
@@ -34,5 +37,15 @@ public class OnlineStoreConfig {
       return messageBundle;
     }
     
-    
+//    @Bean
+//    public DataSource dataSource() {
+//    	DriverManagerDataSource ds = new DriverManagerDataSource();
+//        ds.setDriverClassName("org.postgresql.Driver");
+//        ds.setUrl("jdbc:postgresql://pellefant.db.elephantsql.com:5432/jmqxmnjv");
+//        ds.setUsername("jmqxmnjv");
+//        ds.setPassword("uC4eRC5K8MV_iyqiBKDAA5XwNHvIF-Sx");
+//        
+//        return ds;
+//    }
+//    
 }

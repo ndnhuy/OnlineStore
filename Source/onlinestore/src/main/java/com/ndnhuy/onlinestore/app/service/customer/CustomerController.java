@@ -33,6 +33,7 @@ public class CustomerController {
 	@RequestMapping(method=RequestMethod.GET)
 	public Collection<CustomerDto> getCustomers() {
 		logger.info("Find all customers");
+		
 		return customerService.findAll();
 	}
 	

@@ -16,16 +16,18 @@ import com.ndnhuy.onlinestore.domain.common.AppException;
 @ControllerAdvice
 public class ExceptionHandlingController {
 	@ExceptionHandler(RuntimeException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public MyError handleException(RuntimeException e) {
-		MyError error = new MyError();
-		error.setCode(100);
-		error.setMessage("TEST EX HANDLER");
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public RestError handleException(RuntimeException e) {
+		RestError error = new RestError();
+		error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		error.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		error.setDeveloperMessage(e.getMessage());
+		error.setMessage(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 		return error;
 	}
 	
 	@ExceptionHandler(AppException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public RestError handleAppException(AppException e) {
 		
 		RestError error = new RestError();

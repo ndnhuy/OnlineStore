@@ -7,14 +7,19 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.sync.Patch;
 
 import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
+import com.ndnhuy.onlinestore.domain.common.AppException;
 
 /**
  * @author Huy Nguyen
@@ -64,6 +69,8 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 		if (logger.isDebugEnabled())
 			logger.debug("Add " + entityType.getName() + "[" + ToStringBuilder.reflectionToString(dto) + "]");
 		
+		validator.validate(dto);
+		
 		E e = mapper.map(dto, entityType);
 		repository.saveAndFlush(e);
 		return mapper.map(e, dtoType);
@@ -101,13 +108,19 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 			method = dtoType.getMethod("getId", null);
 			
 			if (!method.getReturnType().equals(idType)) {
-				throw new RuntimeException("The return type of this getId() is not compatible with " + idType.getName());
+				String errorMessage = dtoType.getName() + "#" + method.getName() + " not return " + idType.getName();
+				logger.error(errorMessage);
+				throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Fail to update" , errorMessage);
 			}
 			
 			
 			ID id = (ID) method.invoke(updatedInfo, null);
 			if (!repository.exists(id)) {
-				throw new RuntimeException(entityType.getSimpleName() + " (id = " + id + ") not found");
+				String errorMessage = entityType.getName() + " (id = " + id + ") not found. Cannot update.";
+				logger.error(errorMessage);
+				throw new AppException(HttpStatus.NO_CONTENT.value(), 
+						"The " + entityType.getSimpleName() + " is not found in server, you cannot update it. Make sure your input is correct", 
+						errorMessage);
 			}
 			
 			E entityToSave = mapper.map(updatedInfo, entityType);
@@ -117,13 +130,14 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 			
 		} catch (NoSuchMethodException e) {
 			logger.error("No such method " + dtoType.getName() + "#getId()", e);
+			throw new RuntimeException("No such method " + dtoType.getName() + "#getId()", e);
 		} catch (SecurityException e) {
 			logger.error("Cannot find method " + dtoType.getName() + "#getId()", e);
+			throw new RuntimeException("Cannot find method " + dtoType.getName() + "#getId()", e);
 		} catch (IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
 			logger.error("The error occured when call method " + method.getName(), e);
+			throw new RuntimeException("The error occured when call method " + method.getName(), e);
 		}
-		
-		return null;
 	}
 	
 	@Override
