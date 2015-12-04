@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.app.service.customer;
+package com.ndnhuy.onlinestore.app.service.common;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
