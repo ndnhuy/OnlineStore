@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.domainservice;
+package com.ndnhuy.onlinestore.domain.domainservice.purchase;
 
 import java.util.ArrayList;
 import java.util.Collection;

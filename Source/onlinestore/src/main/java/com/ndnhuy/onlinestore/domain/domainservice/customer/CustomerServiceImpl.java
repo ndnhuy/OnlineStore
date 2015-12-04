@@ -1,8 +1,9 @@
-package com.ndnhuy.onlinestore.domain.domainservice;
+package com.ndnhuy.onlinestore.domain.domainservice.customer;
 
 import org.springframework.stereotype.Service;
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 

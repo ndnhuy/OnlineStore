@@ -5,21 +5,15 @@ import java.util.Collection;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.sync.Patch;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
-import com.ndnhuy.onlinestore.commonutils.MyError;
-import com.ndnhuy.onlinestore.domain.common.AppException;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerService;
+import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
 
 @RestController
 @RequestMapping("/customers")

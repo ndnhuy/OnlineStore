@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.domainservice;
+package com.ndnhuy.onlinestore.domain.domainservice.generic;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -7,19 +7,18 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.sync.Patch;
 
 import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
-import com.ndnhuy.onlinestore.domain.common.AppException;
+import com.ndnhuy.onlinestore.domain.exception.AppException;
+import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
 /**
  * @author Huy Nguyen
@@ -27,6 +26,9 @@ import com.ndnhuy.onlinestore.domain.common.AppException;
 public abstract class GenericServiceImpl<E, D, ID extends Serializable> implements GenericService<E, D, ID>{
 	
 	private static final Logger logger = Logger.getLogger(GenericServiceImpl.class);
+	
+	@Autowired
+	protected ApplicationContext context;
 	
 	@Autowired
 	protected JpaRepository<E, ID> repository;
@@ -58,7 +60,7 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 		
 		E e = repository.findOne(id);
 		if (e == null) {
-			throw new RuntimeException(entityType.getName() + " [id=" + id + "] " + " does not exist");
+			throw new EntityNotFoundException(entityType.getSimpleName(), "id = " + id, "id = " + id);
 		}
 		
 		return mapper.map(e, dtoType);
@@ -116,11 +118,9 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 			
 			ID id = (ID) method.invoke(updatedInfo, null);
 			if (!repository.exists(id)) {
-				String errorMessage = entityType.getName() + " (id = " + id + ") not found. Cannot update.";
-				logger.error(errorMessage);
-				throw new AppException(HttpStatus.NO_CONTENT.value(), 
-						"The " + entityType.getSimpleName() + " is not found in server, you cannot update it. Make sure your input is correct", 
-						errorMessage);
+				EntityNotFoundException e = new EntityNotFoundException(entityType.getSimpleName(), "id = " + id, "id = " + id);
+				logger.error("Fail to update", e);
+				throw e;
 			}
 			
 			E entityToSave = mapper.map(updatedInfo, entityType);

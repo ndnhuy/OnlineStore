@@ -1,12 +1,13 @@
-package com.ndnhuy.onlinestore.domain.common;
+package com.ndnhuy.onlinestore.domain.exception;
 
 public class AppException extends RuntimeException {
-	private Integer status;
-	private String userMessage;
-	private String developerMessage;
-	private Exception exception;
+	protected Integer status;
+	protected String userMessage;
+	protected String developerMessage;
+	protected Exception exception;
 	
 	public AppException(Integer status, String userMessage, String developerMessage) {
+		super(developerMessage);
 		this.status = status;
 		this.userMessage = userMessage;
 		this.developerMessage = developerMessage;

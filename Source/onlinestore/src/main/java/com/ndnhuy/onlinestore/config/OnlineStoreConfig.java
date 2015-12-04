@@ -32,7 +32,7 @@ public class OnlineStoreConfig {
     @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource messageSource() {
       ReloadableResourceBundleMessageSource messageBundle = new ReloadableResourceBundleMessageSource();
-      messageBundle.setBasename("classpath:messages");
+      messageBundle.setBasenames("classpath:message/messages", "classpath:message/errors");
       messageBundle.setDefaultEncoding("UTF-8");
       return messageBundle;
     }

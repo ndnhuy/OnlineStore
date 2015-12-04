@@ -18,7 +18,7 @@ import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.commonutils.ValidatorUtil;
 import com.ndnhuy.onlinestore.config.OnlineStoreConfig;
 import com.ndnhuy.onlinestore.config.SpringApplicationRunner;
-import com.ndnhuy.onlinestore.domain.domainservice.CustomerServiceImpl;
+import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerServiceImpl;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 import com.ndnhuy.onlinestore.repository.CustomerRepository;
 
@@ -81,6 +81,5 @@ public class CustomerServiceTest {
 		
 		customerService.add(customerHasExistedName);
 	}
-	
 	
 }

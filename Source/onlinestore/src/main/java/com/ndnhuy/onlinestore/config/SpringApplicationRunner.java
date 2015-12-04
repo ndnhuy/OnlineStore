@@ -8,9 +8,13 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
+import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerServiceImpl;
+import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
 
 @ComponentScan("com.ndnhuy.onlinestore")
@@ -31,21 +35,16 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	        ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	        
-//	        DriverManagerDataSource ds = new DriverManagerDataSource();
-//	        ds.setDriverClassName("org.postgresql.Driver");
-//	        ds.setUrl("jdbc:postgresql://pellefant.db.elephantsql.com:5432/jmqxmnjv");
-//	        ds.setUsername("jmqxmnjv");
-//	        ds.setPassword("uC4eRC5K8MV_iyqiBKDAA5XwNHvIF-Sx");
-//	        
-//	        JdbcTemplate jt = new JdbcTemplate(ds);
-//	        
-//	        jt.execute("create table elephant (id int, name varchar)");
-//	        jt.execute("insert into elephant (id, name) values (1, 'elephant_1')");
-//	        jt.execute("insert into elephant (id, name) values (2, 'elephant_2')");   
-//	        
-//	        Object[] parameters = new Object[] {new Integer(2)};
-//	        Object o = jt.queryForObject("select name from elephant where id = ?",
-//	          parameters, String.class);
-//	        System.out.println((String)o);
+	        ReloadableResourceBundleMessageSource messageSource = (ReloadableResourceBundleMessageSource) ctx.getBean("messageSource");
+	        
+	        
+	        CustomerDto dto = new CustomerDto();
+	        dto.setEmail("sampleEmail@gmail.com");
+	        dto.setName("sample");
+	        dto.setId(99);
+	        dto.setPassword("pass");
+	        dto.setPurchases(null);
+	        
+	        CustomerService service = ctx.getBean(CustomerServiceImpl.class);
 	 }
 }

@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.domainservice;
+package com.ndnhuy.onlinestore.domain.domainservice.generic;
 
 import java.io.Serializable;
 import java.util.Collection;

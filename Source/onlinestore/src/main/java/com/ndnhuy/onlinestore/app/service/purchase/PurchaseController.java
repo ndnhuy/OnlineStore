@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
-import com.ndnhuy.onlinestore.domain.domainservice.PurchaseService;
+import com.ndnhuy.onlinestore.domain.domainservice.purchase.PurchaseService;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 @RestController

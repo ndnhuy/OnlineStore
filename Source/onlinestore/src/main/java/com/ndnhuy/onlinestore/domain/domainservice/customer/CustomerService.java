@@ -1,7 +1,8 @@
-package com.ndnhuy.onlinestore.domain.domainservice;
+package com.ndnhuy.onlinestore.domain.domainservice.customer;
 
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericService;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
 
 /**

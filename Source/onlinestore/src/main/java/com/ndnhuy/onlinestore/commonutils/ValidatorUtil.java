@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
+import javax.validation.ValidationException;
 import javax.validation.Validator;
 
 import org.apache.log4j.Logger;
@@ -30,7 +31,7 @@ public class ValidatorUtil {
 	public void validate(Object o) {
 		Set<ConstraintViolation<Object>> violations = validator.validate(o);
         for (ConstraintViolation c : violations) {
-        	throw new RuntimeException(c.getMessage());
+        	throw new ValidationException(c.getMessage());
         }
 	}
 	

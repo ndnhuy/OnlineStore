@@ -1,6 +1,5 @@
 package com.ndnhuy.onlinestore.app.service.common;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,8 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ndnhuy.onlinestore.app.dto.common.RestError;
-import com.ndnhuy.onlinestore.commonutils.MyError;
-import com.ndnhuy.onlinestore.domain.common.AppException;
+import com.ndnhuy.onlinestore.domain.exception.AppException;
 
 @RestController
 @ControllerAdvice
