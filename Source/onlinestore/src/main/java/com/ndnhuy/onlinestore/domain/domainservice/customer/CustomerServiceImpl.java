@@ -31,6 +31,4 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		
 		return mapper.map(customer, CustomerDto.class);
 	}
-
-	
 }
