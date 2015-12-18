@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS Tutorial</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ 
+    
+</head>
+<body ng-app="app">
+    <section>
+        <div class="container">
+            <ng-view></ng-view>
+        </div>
+    </section>
+
+</div>
+
+
+
+	  <!-- Libraries -->
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+      <!-- MODULES -->
+      <script src="app.js"></script>
+      <script src="app.config.js"></script>
+      <script src="app.services.js"></script>
+      <script src="app.routes.js"></script>
+      <script src="app.core.js"></script>
+
+
+      <!-- CONTROLLERS -->
+      <script src="sections/product/product.controller.js"></script>
+       <script src="sections/product-detail/product-detail.controller.js"></script>
+
+      <!-- SERVICES -->
+      <script src="services/product.service.js"></script>
+
+</body>
+</html>

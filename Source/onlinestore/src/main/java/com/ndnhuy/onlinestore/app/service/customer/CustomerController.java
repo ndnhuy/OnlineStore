@@ -1,5 +1,7 @@
 package com.ndnhuy.onlinestore.app.service.customer;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +32,30 @@ public class CustomerController {
 	public RestSuccess getCustomers() {
 		logger.info("Find all customers");
 		
-		return new RestSuccess(HttpStatus.OK.value(), customerService.findAll());
+		Collection<CustomerDto> customersDto = customerService.findAll();
+		
+		logger.info("Customers: ");
+		for (CustomerDto c : customersDto) {
+			logger.info("Id: " + c.getId() + ", name: " + c.getName() + ", email: " + c.getEmail());
+		}
+		
+		return new RestSuccess(HttpStatus.OK.value(), customersDto);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public RestSuccess getCustomer(@PathVariable("id") Integer id) {
-		return new RestSuccess(HttpStatus.OK.value(), customerService.findOne(id), null);
+		logger.info("Get customer: id = " + id);
+		
+		CustomerDto customerDto = customerService.findOne(id);
+		
+		logger.info("Customer [id = " + customerDto.getId() + ", name = " + customerDto.getName() + ", email = " + customerDto.getEmail());
+		
+		return new RestSuccess(HttpStatus.OK.value(), customerDto, null);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public RestSuccess addCustomer(@RequestBody CustomerDto dto) {
-		logger.info("Add customer " + ToStringBuilder.reflectionToString(dto));
+		logger.info("Add customer[id: " + dto.getId() + ", name: " + dto.getName() + ", email: " + dto.getEmail());
 		
 		CustomerDto newlyCreatedCustomer = customerService.add(dto);
 		

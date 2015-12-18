@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "/D/Softs/IDE/GitHubSpace/Java/online-store/OnlineStore/front-end"
+		}
+	],
+	"settings": {
+      "sublime-view-in-browser": {
+         "baseUrl": "http://localhost:8283",
+         "basePath": "D:\\Softs\\IDE\\GitHubSpace\\Java\\online-store\\OnlineStore\\front-end"
+      }
+   }
+}

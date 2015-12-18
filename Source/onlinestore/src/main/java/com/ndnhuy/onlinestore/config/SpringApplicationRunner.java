@@ -25,7 +25,7 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	
 	private static final Logger logger = Logger.getLogger(SpringApplicationRunner.class);
 	
-	 @Override
+	@Override
 	protected SpringApplicationBuilder configure(
 			SpringApplicationBuilder builder) {
 		

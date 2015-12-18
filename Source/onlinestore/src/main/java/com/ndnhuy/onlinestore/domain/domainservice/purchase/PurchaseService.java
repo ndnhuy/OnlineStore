@@ -1,11 +1,8 @@
 package com.ndnhuy.onlinestore.domain.domainservice.purchase;
 
-import java.util.List;
-
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
+import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericService;
+import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
-public interface PurchaseService {
-	PurchaseDto getPurchase(Integer id);
-	List<PurchaseDto> getAll();
-	void add(PurchaseDto addedPurchaseDto);
+public interface PurchaseService extends GenericService<Purchase, PurchaseDto, Integer> {
 }

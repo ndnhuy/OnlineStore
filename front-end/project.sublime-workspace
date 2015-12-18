@@ -1,0 +1,450 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"$route",
+				"$routeProvider	AngularJS"
+			],
+			[
+				"data-ng",
+				"data-ng-model"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"ma",
+				"matchingTable"
+			],
+			[
+				"ap",
+				"applicatbleTable"
+			],
+			[
+				"app",
+				"applicatbleTable"
+			],
+			[
+				"al",
+				"vertical-align"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"form-",
+				"form-horizontal"
+			],
+			[
+				"inpu",
+				"input	Tag"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"section",
+				"section_container_left"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"color",
+				"border-color"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"bal",
+				"background-color"
+			],
+			[
+				"list-st",
+				"list-style-type"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"area",
+				"area_2"
+			],
+			[
+				"que",
+				"questionNumber"
+			],
+			[
+				"h2",
+				"h2	Tag"
+			],
+			[
+				"conten",
+				"content_draw_specific_shape"
+			],
+			[
+				"rep",
+				"repeat-y"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Softs/IDE/GitHubSpace/AngularJS/tutorials/angularjs-by-example/angularjs-by-example/package.json",
+		"/D/Softs/IDE/GitHubSpace/AngularJS/tutorials/angularjs-by-example/angularjs-by-example/src/sections/home/home.ctrl.js",
+		"/D/TestProgram/AngularJS/PhoneStore/controllers/PhoneController",
+		"/D/TestProgram/AngularJS/PhoneStore/services/phoneService",
+		"/C/Users/PCPRO/Desktop/cssmenu/index.html",
+		"/D/TestProgram/AngularJS/PhoneStore/controllers/MathController.js",
+		"/D/TestProgram/AngularJS/PhoneStore/project.sublime-project",
+		"/D/TestProgram/AngularJS/FundamentalLearn/learn.sublime-project",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/PCPRO/AppData/Roaming/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/D/TestProgram/StudentWebUI/index.html",
+		"/D/Softs/GitHub/MyProject/Readme.txt",
+		"/D/TestProgram/StudentWebUI/angular-learning/angular-learning.html",
+		"/D/log.out",
+		"/C/Users/PCPRO/Desktop/startbootstrap-shop-homepage-1.0.3/startbootstrap-shop-homepage-1.0.3/register.html",
+		"/C/Users/PCPRO/Desktop/startbootstrap-shop-homepage-1.0.3/startbootstrap-shop-homepage-1.0.3/login.html",
+		"/D/Google Drive/Projects/University/Java/UI/script.js",
+		"/D/Google Drive/Projects/University/Java/UI/style.css",
+		"/C/Users/PCPRO/Desktop/startbootstrap-shop-homepage-1.0.3/startbootstrap-shop-homepage-1.0.3/phone_detail.html",
+		"/D/Softs/IDE/Eclipse/Eclipse Luna SR2/workspace/PhoneStore/src/main/webapp/WEB-INF/resources/js/customer.js",
+		"/C/Users/PCPRO/Desktop/startbootstrap-shop-homepage-1.0.3/startbootstrap-shop-homepage-1.0.3/index.html",
+		"/D/Google Drive/Bank.txt",
+		"/D/Google Drive/Projects/University/Java/UI/index.html",
+		"/C/Users/PCPRO/Desktop/startbootstrap-shop-homepage-1.0.3/startbootstrap-shop-homepage-1.0.3/register-result.html",
+		"/D/Google Drive/Notes/Software Management/AHP",
+		"/D/Google Drive/Notes/youtueAPI.txt",
+		"/C/Users/PCPRO/Desktop/ustora/ustora/index.html",
+		"/C/Users/PCPRO/Desktop/ustora/ustora/css/style.css",
+		"/C/Users/PCPRO/Desktop/ustora/ustora/js/script.js",
+		"/C/Users/PCPRO/Desktop/ustora/ustora/js/main.js",
+		"/C/Users/PCPRO/Desktop/ustora/ustora/signin.html",
+		"/C/Users/PCPRO/Desktop/PDCA.txt",
+		"/D/Google Drive/Notes/Software Management/index.html",
+		"/C/Users/PCPRO/Desktop/ustora/source.txt",
+		"/D/Google Drive/Notes/Software Management/Problem_solving",
+		"/D/Google Drive/Books/IT/Android/Android_Requirements.txt",
+		"/D/Google Drive/Notes/Software Management/software_management.txt",
+		"/D/Google Drive/Notes/software_management.txt",
+		"/D/Google Drive/Notes/webservice.txt",
+		"/D/Softs/SOAP_UI/SoapUI-5.2.0/RELEASENOTES.txt",
+		"/D/Google Drive/Notes/presentation_contents.txt",
+		"/C/Users/PCPRO/Desktop/Spring-questions.txt",
+		"/C/Users/PCPRO/Desktop/demo.html",
+		"/D/Softs/IDE/AndroidStudioWorkspace/AndroidStudioWorkspace/Demo/TextViewDemo/app/src/main/java/example/com/textviewdemo/MainActivity.java",
+		"/C/Users/PCPRO/Desktop/presentation_structure.txt",
+		"/C/Users/PCPRO/Desktop/code+clip/code+clip/frmNhanVien.txt",
+		"/C/Users/PCPRO/Desktop/Module1.txt",
+		"/D/Job/TruyenMa/Videos/README.txt",
+		"/C/Users/PCPRO/Desktop/CODE-MODULE_24_7.txt",
+		"/D/Google Drive/Upload/Thao_Project/Database/Script.txt",
+		"/D/Softs/IDE/AndroidStudioWorkspace/AndroidStudioWorkspace/HelloWorld/settings.gradle",
+		"/D/TestProgram/Gradle/Android/build.gradle",
+		"/D/TestProgram/Gradle/Android/src/main/java/org/hello/HelloActivity.java",
+		"/D/TestProgram/Gradle/Android/src/main/res/layout/hello_layout.xml",
+		"/D/TestProgram/Gradle/Android/src/main/res/values/strings.xml",
+		"/D/TestProgram/Gradle/Android/src/main/AndroidManifest.xml",
+		"/C/Users/PCPRO/Desktop/CODE.txt",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/utils/CommandLineInputHandler.java",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/utils/CommandLineInput.java",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/repository/InMemoryToDoRepository.java",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/repository/ToDoRepository.java",
+		"/D/Softs/IDE/AndroidStudioWorkspace/FromGitHub/SunReader2/build.gradle",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/model/ToDoItem.java",
+		"/D/TestProgram/Gradle/ToDoApp/src/main/java/com/manning/gia/todo/ToDoApp.java",
+		"/D/Study/English/Phim/Friends-HD/Friends Season 3 Complete 720p.BRrip.Sujaidr (pimprg)/Torrent downloaded from d2.vu.txt",
+		"/C/Users/PCPRO/Desktop/GiaoVienDangKy.txt",
+		"/D/TestProgram/Gradle/ToDoApp/build.gradle",
+		"/D/TestProgram/Gradle/build.gradle",
+		"/C/Users/PCPRO/Desktop/Android_Requirements",
+		"/C/Users/PCPRO/Desktop/Java_Requirements",
+		"/C/Users/PCPRO/Desktop/All",
+		"/D/TestProgram/Bootstrap/css/select-customer-style.css",
+		"/D/TestProgram/Bootstrap/js/select-customer-script.js",
+		"/D/TestProgram/Bootstrap/uc24.html",
+		"/C/Users/PCPRO/Desktop/bootstrap-2.1.0-examples/fluid-person-horizontal-form.html",
+		"/D/TestProgram/Bootstrap/index.html",
+		"/D/TestProgram/Bootstrap/css/style.css",
+		"/D/TestProgram/Bootstrap/uc24",
+		"/D/Softs/IDE/SpringSTS/workspace/mock css/src/main/webapp/resources/js/select-dealer-script.js",
+		"/D/Google Drive/Projects/Java Project/login.html",
+		"/D/Google Drive/Projects/Java Project/css/search_style.css",
+		"/D/Google Drive/Projects/Java Project/search.html",
+		"/D/Google Drive/Projects/Java Project/css/customer_bag_style.css",
+		"/D/Softs/IDE/SpringSTS/workspace/mock css/src/main/webapp/resources/js/create-agreement-script.js",
+		"/D/Google Drive/Projects/Java Project/css/my_account_style.css",
+		"/D/Google Drive/Projects/Java Project/home.html",
+		"/D/TestProgram/Bootstrap/create_agreement.html",
+		"/D/Google Drive/Projects/Java Project/my_account.html",
+		"/D/TestProgram/Bootstrap/js/select-dealer-script.js",
+		"/D/TestProgram/Bootstrap/js/select-dealer-script",
+		"/D/TestProgram/Bootstrap/js/custom-script.js",
+		"/D/Softs/IDE/SpringSTS/workspace/mock css/src/main/webapp/resources/js/custom-script.js",
+		"/D/TestProgram/Bootstrap/js/custom-script",
+		"/D/Google Drive/Projects/Java Project/js/header.js",
+		"/D/Google Drive/Books/IT/Web Dev/Project/JavascriptLearn/learn/js/quiz_functions.js",
+		"/D/TestProgram/Bootstrap/style.css",
+		"/D/TestProgram/Bootstrap/css/bootstrap-datepicker.css",
+		"/D/Google Drive/Projects/Java Project/customer_bag.html",
+		"/D/Google Drive/Projects/Java Project/css/customer_info_style.css",
+		"/D/Google Drive/Projects/Java Project/css/home_style.css",
+		"/C/Users/PCPRO/Desktop/shirt.html",
+		"/D/Google Drive/Projects/Java Project/css/header_style.css",
+		"/D/Google Drive/Projects/Java Project/css/common_style.css",
+		"/D/Google Drive/Books/IT/Web Dev/Project/JavascriptLearn/learn/index.html",
+		"/D/Google Drive/Projects/Java Project/css/product_detail_style.css",
+		"/D/Google Drive/Projects/Java Project/product_details.html",
+		"/D/Google Drive/Projects/Java Project/sample/css/style-sample.css",
+		"/D/Google Drive/Projects/Java Project/sample/register-sample.html",
+		"/D/Google Drive/Books/IT/Web Dev/Project/JavascriptLearn/index.html",
+		"/D/Google Drive/Projects/Java Project/my_account_edit.html",
+		"/D/Google Drive/Projects/Java Project/css/login_style.css",
+		"/D/Google Drive/Projects/Java Project/css/customer_account_style.css",
+		"/D/Google Drive/Projects/Java Project/css/register_style.css",
+		"/D/Google Drive/Projects/Java Project/css/trash/login_style.css",
+		"/D/Google Drive/Projects/Java Project/register.html",
+		"/D/Google Drive/Projects/Java Project/css/customer_account_style",
+		"/D/Google Drive/Projects/Java Project/register_success.html",
+		"/D/Google Drive/Projects/Java Project/css/common_style",
+		"/D/Google Drive/Projects/Java Project/css/style.css",
+		"/D/Google Drive/Projects/Web Project/css/section_database_style.css",
+		"/D/Google Drive/Projects/Web Project/css/section_style.css",
+		"/D/Google Drive/Projects/Web Project/database.html",
+		"/D/Google Drive/Projects/Web Project/css/section_member_style.css"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"D:\\Softs\\IDE\\GitHubSpace\\AngularJS\\tutorials\\angularjs-by-example",
+			"D:\\TestProgram\\AngularJSDemos"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"app.services",
+			"angularMoment",
+			"PageValues",
+			"PageValue",
+			"PageValues",
+			"tutorials",
+			"class=\"container\"",
+			"ngView",
+			"<!-- ngView: undefined -->",
+			"HomeController",
+			"PageValues",
+			"Learn AngularJS using best practice real world examples.",
+			"bar.data.title",
+			"description",
+			"title",
+			"$scope.data",
+			"bar",
+			"bar.data",
+			"package",
+			"customermanagementapp",
+			"newCustomer",
+			"simple",
+			"brow",
+			"fire",
+			"auto_complete_selector",
+			"auto_complete",
+			"to string",
+			"org.spring",
+			"transaction",
+			"jpa",
+			"img",
+			"slider-area",
+			"cart.html",
+			"logo",
+			"cart.html",
+			"logo",
+			"shop page",
+			".js",
+			"latest Jquery",
+			"single-product-area",
+			"single-product",
+			"single",
+			"shopping cart",
+			"shopping",
+			"shopping cart",
+			"login",
+			"Login",
+			"login",
+			"\\",
+			"web",
+			"API",
+			"SDK",
+			"form:",
+			"/p",
+			"questions",
+			"headwork"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 345.0,
+	"status_bar_visible": true
+}

@@ -1,12 +1,12 @@
 package com.ndnhuy.onlinestore.config;
 
-import javax.sql.DataSource;
-
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
 import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
@@ -35,6 +35,16 @@ public class OnlineStoreConfig {
       messageBundle.setBasenames("classpath:message/messages", "classpath:message/errors");
       messageBundle.setDefaultEncoding("UTF-8");
       return messageBundle;
+    }
+    
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**");
+            }
+        };
     }
     
 //    @Bean
