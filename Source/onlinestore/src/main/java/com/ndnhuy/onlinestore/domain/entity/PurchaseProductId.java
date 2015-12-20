@@ -3,18 +3,15 @@ package com.ndnhuy.onlinestore.domain.entity;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
 public class PurchaseProductId implements Serializable {
-	
-	@ManyToOne
-	Purchase purchase;
-	
-	@ManyToOne
-	Product product;
 
+	Purchase purchase;
+	Product product;
+	
+	@ManyToOne
 	public Purchase getPurchase() {
 		return purchase;
 	}
@@ -22,7 +19,7 @@ public class PurchaseProductId implements Serializable {
 	public void setPurchase(Purchase purchase) {
 		this.purchase = purchase;
 	}
-
+	@ManyToOne
 	public Product getProduct() {
 		return product;
 	}

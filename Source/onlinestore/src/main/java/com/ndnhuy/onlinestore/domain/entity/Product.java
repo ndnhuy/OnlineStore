@@ -3,6 +3,7 @@ package com.ndnhuy.onlinestore.domain.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,6 +36,10 @@ public class Product {
 	
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="products")
 	private Collection<Purchase> purchases = new ArrayList<Purchase>();
+	
+	@OneToMany(mappedBy="purchaseProductId.product",
+			cascade=CascadeType.ALL)
+	private Collection<PurchaseProduct> purchaseProducts;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -53,6 +59,22 @@ public class Product {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Collection<Purchase> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(Collection<Purchase> purchases) {
+		this.purchases = purchases;
+	}
+
+	public Collection<PurchaseProduct> getPurchaseProducts() {
+		return purchaseProducts;
+	}
+
+	public void setPurchaseProducts(Collection<PurchaseProduct> purchaseProducts) {
+		this.purchaseProducts = purchaseProducts;
 	}
 	
 	

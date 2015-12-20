@@ -1,32 +1,31 @@
 package com.ndnhuy.onlinestore.domain.entity;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="purchase_product")
+@AssociationOverrides({
+	@AssociationOverride(name="purchaseProductId.purchase",
+			joinColumns=@JoinColumn(name="purchase_id")),
+	@AssociationOverride(name="purchaseProductId.product",
+			joinColumns=@JoinColumn(name="product_id"))
+})
 public class PurchaseProduct {
 	
-	@EmbeddedId
-	private PurchaseProductId purchaseProductId;
-	
-	@ManyToOne
-	@JoinColumn(name="purchase_id", insertable=false, updatable=false)
-	private Purchase purchase;
-	
-	@ManyToOne
-	@JoinColumn(name="product_id", insertable=false, updatable=false)
-	private Product product;
+	private PurchaseProductId purchaseProductId = new PurchaseProductId();
 	
 	@Column(name="quantity")
 	private Integer quantity;
 
-	
-	
+	@EmbeddedId
 	public PurchaseProductId getPurchaseProductId() {
 		return purchaseProductId;
 	}
@@ -34,22 +33,24 @@ public class PurchaseProduct {
 	public void setPurchaseProductId(PurchaseProductId purchaseProductId) {
 		this.purchaseProductId = purchaseProductId;
 	}
+	
+	@Transient
+	public Purchase getPurchase() {
+		return getPurchaseProductId().getPurchase();
+	}
 
-//	public Purchase getPurchase() {
-//		return purchase;
-//	}
-//
-//	public void setPurchase(Purchase purchase) {
-//		this.purchase = purchase;
-//	}
-//
-//	public Product getProduct() {
-//		return product;
-//	}
-//
-//	public void setProduct(Product product) {
-//		this.product = product;
-//	}
+	public void setPurchase(Purchase purchase) {
+		getPurchaseProductId().setPurchase(purchase);
+	}
+
+	@Transient
+	public Product getProduct() {
+		return getPurchaseProductId().getProduct();
+	}
+
+	public void setProduct(Product product) {
+		getPurchaseProductId().setProduct(product);
+	}
 
 	public Integer getQuantity() {
 		return quantity;

@@ -10,8 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.repository.PurchaseRepository;
+
 
 
 @ComponentScan("com.ndnhuy.onlinestore")

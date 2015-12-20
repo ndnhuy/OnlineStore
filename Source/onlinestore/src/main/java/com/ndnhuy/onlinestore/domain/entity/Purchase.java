@@ -2,6 +2,7 @@ package com.ndnhuy.onlinestore.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,8 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,7 +36,9 @@ public class Purchase {
 				inverseJoinColumns={@JoinColumn(name="product_id")})
 	private Collection<Product> products = new ArrayList<Product>();
 	
-	
+	@OneToMany(mappedBy="purchaseProductId.purchase",
+			cascade=CascadeType.ALL)
+	private List<PurchaseProduct> purchaseProducts;
 	
 	public Integer getId() {
 		return id;
@@ -60,6 +62,14 @@ public class Purchase {
 
 	public void setProducts(Collection<Product> products) {
 		this.products = products;
+	}
+
+	public List<PurchaseProduct> getPurchaseProducts() {
+		return purchaseProducts;
+	}
+
+	public void setPurchaseProducts(List<PurchaseProduct> purchaseProducts) {
+		this.purchaseProducts = purchaseProducts;
 	}
 	
 	

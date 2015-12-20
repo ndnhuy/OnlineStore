@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -70,6 +71,13 @@ public class PurchaseController {
 		return new RestSuccess(HttpStatus.CREATED.value(), newlyCreatedPurchase, "Location " + 
 				ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newlyCreatedPurchase.getId()).toUriString());
 	}
-	
-	
+//	
+//	@RequestMapping(value="/products", method=RequestMethod.POST)
+//	public RestSuccess addProductIntoCart(@RequestParam("product_id") Integer productId) {
+//		logger.info("Add product [id = " + productId + "] into cart");
+//		
+//		purchaseService.addProductIntoCurrentPurchase(productId);
+//		
+//		return new 
+//	}
 }
