@@ -5,16 +5,14 @@ angular
 	.factory('ProductService', function($http, $log) {
 
 		var data = {
-			'getProducts': getProducts,
-			'getProductById': getProductById
+			'getProducts': getProducts
 		};
 
 		function getProducts() {
 			return $http.get('http://localhost:8183/products')
 			.success(function(data, status, headers, config) {
 				return data;
-			})
-			.catch(dataServiceError);
+			});
 		}
 
 
@@ -26,10 +24,4 @@ angular
 		}
 
 		return data;
-
-		function dataServiceError(errorResponse) {
-	        $log.error('Failed for ProductService');
-	        $log.error(errorResponse);
-	        return errorResponse;
-	    }
 	});

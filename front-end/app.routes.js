@@ -24,6 +24,15 @@ function config($routeProvider) {
 				}
 			}
 		})
+		.when('/cart', {
+			templateUrl: 'sections/cart/cart.template.html',
+			controller: 'CartController as cartCtrl',
+			resolve: {
+				products : function(CartService) {
+					return CartService.getProductsInCart();
+				}
+			}
+		})
 		.otherwise({
             redirectTo: '/'
         });

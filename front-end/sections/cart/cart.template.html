@@ -1,0 +1,48 @@
+<div class="container">
+	<h1>SHOPPING CART</h1>
+	<table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th style="width:50%">Product</th>
+                        <th style="width:10%">Price</th>
+                        <th style="width:22%" class="text-center">Subtotal</th>
+                        <th style="width:10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+					 <tr data-ng-repeat="product in cartCtrl.products">
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="http://ecx.images-amazon.com/images/I/418medYDG9L._AC_SY220_.jpg" alt="..." class="img-responsive"/></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">{{product.name}}</h4>
+                                    <p><b>Color:</b>  Black </p>
+                                    <p><b>Screen Size:</b> 7.5 </p>
+                                    <p><b>Manufacturer:</b>  SONY </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">${{product.price}}</td>
+<!--                             <td data-th="Quantity"> -->
+<!--                                 <input type="number" class="form-control text-center" value="1"> -->
+<!--                             </td> -->
+                        <td data-th="Subtotal" class="text-center">${{product.price}}</td>
+                        <td class="actions" data-th="">
+                            <a href="${pageContext.request.contextPath}/cart/delete?cell_phone_id=${ phone_item.id }" class="btn btn-danger btn-sm"><i class="fa fa-trash-o">DELETE</i></a>                                
+                        </td>
+                    </tr>
+                   
+                </tbody>
+                <tfoot>
+                    <tr class="visible-xs">
+                        <td class="text-center"><strong>Total 1.99</strong></td>
+                    </tr>
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                        <td colspan="2" class="hidden-xs"></td>
+                        <td class="hidden-xs text-center"><strong>Total $68</strong></td>
+                        <td><a href="${pageContext.request.contextPath}/cart/" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                    </tr>
+                </tfoot>
+            </table>
+</div>
