@@ -50,6 +50,17 @@ public class PurchaseController {
 		return new RestSuccess(HttpStatus.OK.value(), purchaseDto, null);
 	}
 	
+	@RequestMapping(value="/{purchaseId}/products/{productId}/quantity", method=RequestMethod.GET)
+	public RestSuccess getQuantityOfProductInPurchase(@PathVariable("purchaseId") Integer purchaseId,
+													@PathVariable("productId") Integer productId) {
+		logger.info("Get quantity of product [id = " + productId + "] in purchase [id = " + purchaseId + "]");
+		
+		
+		
+		return new RestSuccess(HttpStatus.OK.value(), purchaseService.findQuantityOfProductInPurchase(purchaseId, productId), 
+				"The quantity of product [id = " + productId + "] in purchase [id = " + purchaseId + "]");
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public RestSuccess addPurchase(@RequestBody PurchaseDto addedPurchaseDto) {
 		logger.info("Add purchase[id: " + addedPurchaseDto.getId() + ", customerId: " + addedPurchaseDto.getCustomerId());

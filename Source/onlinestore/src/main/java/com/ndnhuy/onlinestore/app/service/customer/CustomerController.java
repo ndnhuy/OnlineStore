@@ -16,7 +16,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
+import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 @RestController
 @RequestMapping("/customers")
@@ -26,6 +28,7 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -52,6 +55,27 @@ public class CustomerController {
 		
 		return new RestSuccess(HttpStatus.OK.value(), customerDto, null);
 	}
+//	
+//	@RequestMapping(value="/{customerId}/purchases/{purchaseId}/products/{productId}/quantity", method=RequestMethod.GET)
+//	public RestSuccess getQuantityOfProductInOnePurchase(@PathVariable("customerId") Integer customerId,
+//														@PathVariable("purchaseId") Integer purchaseId,
+//														@PathVariable("productId") Integer productId) {
+//		
+//		
+//		
+//		
+//		
+//		return new RestSuccess(HttpStatus.OK.value(),dtoPurchases, null);
+//	}
+	
+	@RequestMapping(value="/{id}/purchases", method=RequestMethod.GET)
+	public RestSuccess getPurchasesOfCustomer(@PathVariable("id") Integer id) {
+		
+		Collection<PurchaseDto> dtoPurchases = customerService.findPurchasesOfCustomer(id);
+		
+		return new RestSuccess(HttpStatus.OK.value(),dtoPurchases, null);
+	}
+
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public RestSuccess addCustomer(@RequestBody CustomerDto dto) {
@@ -78,6 +102,4 @@ public class CustomerController {
 		
 		return customerService.updateChanges(id, patch);
 	}
-	
-	
 }

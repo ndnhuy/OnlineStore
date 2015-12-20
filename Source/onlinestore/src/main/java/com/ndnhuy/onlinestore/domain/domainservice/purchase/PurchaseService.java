@@ -5,4 +5,5 @@ import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericService;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 public interface PurchaseService extends GenericService<Purchase, PurchaseDto, Integer> {
+	Integer findQuantityOfProductInPurchase(Integer purchaseId, Integer productId);
 }

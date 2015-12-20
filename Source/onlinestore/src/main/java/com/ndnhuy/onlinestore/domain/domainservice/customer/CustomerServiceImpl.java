@@ -1,14 +1,23 @@
 package com.ndnhuy.onlinestore.domain.domainservice.customer;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
+import com.ndnhuy.onlinestore.domain.entity.Product;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
+import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
 @Service
 public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDto, Integer> implements CustomerService {
+	
+	private static final Logger logger = Logger.getLogger(CustomerServiceImpl.class);
 	
 	@Override
 	public CustomerDto add(CustomerDto dto) {
@@ -31,4 +40,26 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		
 		return mapper.map(customer, CustomerDto.class);
 	}
+
+	@Override
+	public Collection<PurchaseDto> findPurchasesOfCustomer(Integer customerId) {
+		if(logger.isDebugEnabled()) {
+			logger.debug("Find all purchases of customer [id = " + customerId + "]");
+		}
+		
+		Customer customer = repository.findOne(customerId);
+		if (customer == null) {
+			throw new EntityNotFoundException(Customer.class.getSimpleName(), "id = " + customerId, "id = " + customerId);
+		}
+		
+		Collection<Purchase> purchases = customer.getPurchases();
+		
+		Collection<PurchaseDto> dtoPurchases = new ArrayList<PurchaseDto>();
+		for (Purchase p : purchases) {
+			dtoPurchases.add(mapper.map(p, PurchaseDto.class));
+		}
+		
+		return dtoPurchases;
+	}
+
 }

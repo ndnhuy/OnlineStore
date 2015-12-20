@@ -1,10 +1,15 @@
 package com.ndnhuy.onlinestore.domain.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,6 +31,9 @@ public class Product {
 	public Integer getId() {
 		return id;
 	}
+	
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="products")
+	private Collection<Purchase> purchases = new ArrayList<Purchase>();
 
 	public void setId(Integer id) {
 		this.id = id;
