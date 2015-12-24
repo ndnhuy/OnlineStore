@@ -55,7 +55,7 @@ public class CustomerServiceTest {
 	public void add_customerHasNoPurchases_shouldSucceed() {
 		CustomerDto customerHasExistedName = new CustomerDto();
 		customerHasExistedName.setEmail("exampleEmail@gmail.com");
-		customerHasExistedName.setName("exampleName");
+		customerHasExistedName.setUsername("exampleName");
 		customerHasExistedName.setPassword("password");
 		customerHasExistedName.setPurchases(null);
 		
@@ -71,7 +71,7 @@ public class CustomerServiceTest {
 				
 		CustomerDto customerHasExistedName = new CustomerDto();
 		customerHasExistedName.setEmail("exampleEmail@gmail.com");
-		customerHasExistedName.setName("exampleName");
+		customerHasExistedName.setUsername("exampleName");
 		customerHasExistedName.setPassword("password");
 		customerHasExistedName.setPurchases(null);
 		

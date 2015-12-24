@@ -10,15 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.cfg.context.Cascadable;
-
-import com.ndnhuy.onlinestore.annotation.UniqueInRepository;
 
 @Entity
 @Table(name="customer")
@@ -29,9 +26,9 @@ public class Customer implements Serializable {
 	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
 	private Integer id;
 	
-	@Column(name="name")
+	@Column(name="username")
 	@NotNull
-	private String name;
+	private String username;
 	
 	@Column(name="email")
 	@NotNull
@@ -40,6 +37,10 @@ public class Customer implements Serializable {
 	@Column(name="password", unique=true)
 	@NotNull
 	private String password;
+	
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private UserRole userRole;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer", cascade=CascadeType.ALL)
 	private Collection<Purchase> purchases;
@@ -60,12 +61,12 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getEmail() {
@@ -82,6 +83,14 @@ public class Customer implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 	
 	

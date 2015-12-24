@@ -33,6 +33,10 @@ function config($routeProvider) {
 				}
 			}
 		})
+		.when('/login', {
+			templateUrl: 'sections/login/login.template.html',
+			controller: 'LoginController as loginCtrl'
+		})
 		.otherwise({
             redirectTo: '/'
         });

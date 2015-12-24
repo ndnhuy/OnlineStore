@@ -37,7 +37,7 @@ public class Product {
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="products")
 	private Collection<Purchase> purchases = new ArrayList<Purchase>();
 	
-	@OneToMany(mappedBy="purchaseProductId.product",
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="purchaseProductId.product",
 			cascade=CascadeType.ALL)
 	private Collection<PurchaseProduct> purchaseProducts;
 

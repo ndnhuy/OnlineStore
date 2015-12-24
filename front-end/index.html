@@ -1,26 +1,23 @@
-<!DOCTYPE html>
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>AngularJS Tutorial</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="sections/cart/cart.css">
-    
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sections/cart/cart.css">
 </head>
 <body ng-app="app">
-    <section>
-        <div class="container">
-            <ng-view></ng-view>
-        </div>
-    </section>
+  <ng-view></ng-view> 
 
-</div>
-
-
-
-	     <!-- Libraries -->
-      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+  
+      <!-- Libraries -->
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
       <!-- jQuery -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <!-- Bootstrap Core JavaScript -->
@@ -38,11 +35,13 @@
       <script src="sections/product/product.controller.js"></script>
       <script src="sections/product-detail/product-detail.controller.js"></script>
       <script src="sections/cart/cart.controller.js"></script>
+      <script src="sections/login/login.controller.js"></script>
+
 
       <!-- SERVICES -->
+      <script src="services/constant.service.js"></script>
       <script src="services/product.service.js"></script>
       <script src="services/cart.service.js"></script>
-
-
+      <script src="services/authentication.service.js"></script>
 </body>
 </html>

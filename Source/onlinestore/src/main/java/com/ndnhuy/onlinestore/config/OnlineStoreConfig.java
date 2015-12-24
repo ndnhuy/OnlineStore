@@ -3,12 +3,16 @@ package com.ndnhuy.onlinestore.config;
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.filter.RequestContextFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
+import com.ndnhuy.onlinestore.commonutils.CurrentUser;
 import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
 
 @Configuration
@@ -42,10 +46,15 @@ public class OnlineStoreConfig {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
+                registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
     }
+    
+	@Bean 
+	public RequestContextFilter requestContextFilter() { 
+		return new RequestContextFilter(); 
+	} 
     
 //    @Bean
 //    public DataSource dataSource() {

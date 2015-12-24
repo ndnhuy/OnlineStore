@@ -16,13 +16,11 @@ public class UniqueValidator implements ConstraintValidator<UniqueInRepository, 
 
 	@Override
 	public void initialize(UniqueInRepository constraintAnnotation) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

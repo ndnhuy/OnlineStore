@@ -39,7 +39,7 @@ public class CustomerController {
 		
 		logger.info("Customers: ");
 		for (CustomerDto c : customersDto) {
-			logger.info("Id: " + c.getId() + ", name: " + c.getName() + ", email: " + c.getEmail());
+			logger.info("Id: " + c.getId() + ", name: " + c.getUsername() + ", email: " + c.getEmail());
 		}
 		
 		return new RestSuccess(HttpStatus.OK.value(), customersDto);
@@ -51,7 +51,7 @@ public class CustomerController {
 		
 		CustomerDto customerDto = customerService.findOne(id);
 		
-		logger.info("Customer [id = " + customerDto.getId() + ", name = " + customerDto.getName() + ", email = " + customerDto.getEmail());
+		logger.info("Customer [id = " + customerDto.getId() + ", name = " + customerDto.getUsername() + ", email = " + customerDto.getEmail());
 		
 		return new RestSuccess(HttpStatus.OK.value(), customerDto, null);
 	}
@@ -79,7 +79,7 @@ public class CustomerController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public RestSuccess addCustomer(@RequestBody CustomerDto dto) {
-		logger.info("Add customer[id: " + dto.getId() + ", name: " + dto.getName() + ", email: " + dto.getEmail());
+		logger.info("Add customer[id: " + dto.getId() + ", name: " + dto.getUsername() + ", email: " + dto.getEmail());
 		
 		CustomerDto newlyCreatedCustomer = customerService.add(dto);
 		

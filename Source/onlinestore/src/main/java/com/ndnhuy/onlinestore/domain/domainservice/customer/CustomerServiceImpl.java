@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
+import com.ndnhuy.onlinestore.commonutils.CurrentUser;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.entity.Customer;
-import com.ndnhuy.onlinestore.domain.entity.Product;
 import com.ndnhuy.onlinestore.domain.entity.Purchase;
 import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
@@ -60,6 +62,16 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		}
 		
 		return dtoPurchases;
+	}
+	
+	@Autowired
+	CurrentUser currentUser;
+	
+	@Secured("ROLE_ADMIN")
+	@Override
+	public Collection<CustomerDto> findAll() {
+		System.out.println("From CustomerServiceImpl, currentUser has id " + currentUser.getCustomerId());
+		return super.findAll();
 	}
 
 }

@@ -17,10 +17,10 @@ public class CustomerDto implements Serializable {
 	@Mapping("id")
 	private Integer id;
 	
-	@Mapping("name")
+	@Mapping("username")
 	@UniqueInRepository
 	@Size(min = 0, max = 10, message = "'name' " + "{javax.validation.constraints.Size.message}")
-	private String name;
+	private String username;
 	
 	@Mapping("email")
 	@UniqueInRepository
@@ -46,11 +46,11 @@ public class CustomerDto implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getEmail() {
 		return email;

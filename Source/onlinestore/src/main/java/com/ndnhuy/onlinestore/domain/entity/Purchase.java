@@ -36,8 +36,8 @@ public class Purchase {
 				inverseJoinColumns={@JoinColumn(name="product_id")})
 	private Collection<Product> products = new ArrayList<Product>();
 	
-	@OneToMany(mappedBy="purchaseProductId.purchase",
-			cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="purchaseProductId.purchase",
+			cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PurchaseProduct> purchaseProducts;
 	
 	public Integer getId() {

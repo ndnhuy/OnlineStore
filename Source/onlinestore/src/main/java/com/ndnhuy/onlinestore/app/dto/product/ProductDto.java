@@ -1,8 +1,10 @@
 package com.ndnhuy.onlinestore.app.dto.product;
 
+import java.io.Serializable;
+
 import org.dozer.Mapping;
 
-public class ProductDto {
+public class ProductDto implements Serializable {
 	@Mapping("id")
 	Integer id;
 	
