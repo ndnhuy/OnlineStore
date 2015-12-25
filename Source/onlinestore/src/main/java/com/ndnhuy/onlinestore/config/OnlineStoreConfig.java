@@ -51,10 +51,6 @@ public class OnlineStoreConfig {
         };
     }
     
-	@Bean 
-	public RequestContextFilter requestContextFilter() { 
-		return new RequestContextFilter(); 
-	} 
     
 //    @Bean
 //    public DataSource dataSource() {

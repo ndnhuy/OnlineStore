@@ -36,10 +36,9 @@ public class OnlineStoreUserService implements UserDetailsService {
 		Customer customer = customerRepository.findByUsername(username);
 		if (customer != null) {
 			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority(customer.getUserRole().getRoleName()));
+			authorities.add(new SimpleGrantedAuthority(customer.getUserRole().getRoleName().toUpperCase()));
 			
 			currentUser.setCustomerId(customer.getId());
-			
 			return new User(customer.getUsername(), customer.getPassword(), authorities);
 		}
 		

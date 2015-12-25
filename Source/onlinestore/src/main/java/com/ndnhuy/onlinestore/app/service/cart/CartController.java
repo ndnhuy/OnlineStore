@@ -36,4 +36,11 @@ public class CartController {
 		return new RestSuccess(HttpStatus.OK.value(), dtoPurchase, null);
 	}
 	
+//	@RequestMapping(method=RequestMethod.POST)
+//	public RestSuccess addProductIntoCart(@RequestParam("insert_product_id") Integer productId) {
+//		logger.info("Add to cart of customer [id=" + currentUser.getCustomerId() + "] " + "the product [id=" + productId + "]");
+//		
+//		
+//	}
+	
 }

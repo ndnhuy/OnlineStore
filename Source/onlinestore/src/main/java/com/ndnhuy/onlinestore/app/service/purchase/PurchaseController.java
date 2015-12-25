@@ -30,7 +30,6 @@ public class PurchaseController {
 	private PurchaseService purchaseService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	@Secured("ROLE_ADMIN")
 	public RestSuccess getAllPurchases() {
 		logger.info("Find all purchases");
 		

@@ -67,7 +67,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 	@Autowired
 	CurrentUser currentUser;
 	
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_USER")
 	@Override
 	public Collection<CustomerDto> findAll() {
 		System.out.println("From CustomerServiceImpl, currentUser has id " + currentUser.getCustomerId());

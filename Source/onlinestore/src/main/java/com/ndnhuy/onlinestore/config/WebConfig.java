@@ -32,10 +32,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	@Override
-		public void addInterceptors(InterceptorRegistry registry) {
-			// TODO Auto-generated method stub
-			super.addInterceptors(registry);
-			
-			registry.addInterceptor(onlineStoreInterceptor);
-		}
+	public void addInterceptors(InterceptorRegistry registry) {
+		super.addInterceptors(registry);
+		
+		registry.addInterceptor(onlineStoreInterceptor);
+	}
 }

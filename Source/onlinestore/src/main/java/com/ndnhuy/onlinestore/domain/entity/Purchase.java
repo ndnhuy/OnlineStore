@@ -30,6 +30,10 @@ public class Purchase {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer;
 	
+	@ManyToOne
+	@JoinColumn(name="status_id")
+	private PurchaseStatus purchaseStatus;
+	
 	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
 	@JoinTable(name="purchase_product",
 				joinColumns={@JoinColumn(name="purchase_id")},
@@ -70,6 +74,14 @@ public class Purchase {
 
 	public void setPurchaseProducts(List<PurchaseProduct> purchaseProducts) {
 		this.purchaseProducts = purchaseProducts;
+	}
+
+	public PurchaseStatus getPurchaseStatus() {
+		return purchaseStatus;
+	}
+
+	public void setPurchaseStatus(PurchaseStatus purchaseStatus) {
+		this.purchaseStatus = purchaseStatus;
 	}
 	
 	

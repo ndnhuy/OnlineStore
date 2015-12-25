@@ -24,7 +24,7 @@ private RequestCache requestCache = new HttpSessionRequestCache();
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, 
 			Authentication authentication) throws ServletException, IOException {
-				
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		

@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 
+
 @ComponentScan("com.ndnhuy.onlinestore")
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages="com.ndnhuy.onlinestore.repository")
@@ -30,10 +31,7 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	    ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	    
-//	    CustomerRepository repo = ctx.getBean(CustomerRepository.class);
-//	    Customer c = repo.findOne(2);
-//	    
-//	    System.out.println("CUSTOMER: " + c.getUserRole().getRoleName());
+//	    System.out.println("STATUS: " + PurchaseStatus.ORDERING.toString());
 	    
 	 }
 }
