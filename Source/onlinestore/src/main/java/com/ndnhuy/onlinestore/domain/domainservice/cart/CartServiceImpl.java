@@ -1,5 +1,7 @@
 package com.ndnhuy.onlinestore.domain.domainservice.cart;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.commonutils.ConstPurchaseStatus;
 import com.ndnhuy.onlinestore.domain.domainservice.product.ProductService;
 import com.ndnhuy.onlinestore.domain.domainservice.purchase.PurchaseService;
+import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -29,9 +32,21 @@ public class CartServiceImpl implements CartService {
 	public PurchaseDto findCartOfCustomer(Integer customerId) {
 		logger.debug("Find cart of customer [id=" + customerId + "]");
 		
-		PurchaseDto dtoPurchase = purchaseService
-										.findPurchaseByCustomerIdAndStatusId(customerId, 
-																			ConstPurchaseStatus.ORDERING.value());
+		PurchaseDto dtoPurchase = null;
+		try {
+			dtoPurchase = purchaseService
+					.findPurchaseByCustomerIdAndStatusId(customerId, 
+														ConstPurchaseStatus.ORDERING.value());
+		} catch (EntityNotFoundException ex) {
+			PurchaseDto newPurchase = new PurchaseDto();
+			newPurchase.setCustomerId(customerId);
+			newPurchase.setStatusId(ConstPurchaseStatus.ORDERING.value());
+			
+			dtoPurchase = purchaseService.add(newPurchase);
+			
+			dtoPurchase.setProducts(new ArrayList<ProductDtoPurchase>());
+		}
+		
 		
 		Double total = 0.0;
 		
@@ -70,6 +85,18 @@ public class CartServiceImpl implements CartService {
 													ConstPurchaseStatus.ORDERING.value());
 		
 		return purchaseService.removeProductFromPurchase(productId, dtoPurchase.getId());
+	}
+
+	@Override
+	public void updateQuantityOfProductInCart(Integer quantity, Integer customerId,
+			Integer productId) {
+
+		PurchaseDto dtoPurchase = purchaseService
+				.findPurchaseByCustomerIdAndStatusId(customerId, 
+													ConstPurchaseStatus.ORDERING.value());
+		
+		purchaseService.updateQuantityOfProductInPurchase(quantity, productId, dtoPurchase.getId());
+		
 	}
 
 }

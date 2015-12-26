@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import com.ndnhuy.onlinestore.app.dto.customer.BasicCustomerDto;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.commonutils.CurrentUser;
@@ -64,14 +65,21 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		return dtoPurchases;
 	}
 	
-	@Autowired
-	CurrentUser currentUser;
-	
-	@Secured("ROLE_USER")
 	@Override
 	public Collection<CustomerDto> findAll() {
-		System.out.println("From CustomerServiceImpl, currentUser has id " + currentUser.getCustomerId());
 		return super.findAll();
+	}
+
+	@Override
+	public BasicCustomerDto findBasicCustomerInfo(Integer customerId) {
+		if(logger.isDebugEnabled()) {
+			logger.debug("Find basic customer info id " + customerId);
+		}
+		
+		Customer customer = repository.findOne(customerId);
+		BasicCustomerDto dtoBasicCustomer = mapper.map(customer, BasicCustomerDto.class);
+		
+		return dtoBasicCustomer;
 	}
 
 }

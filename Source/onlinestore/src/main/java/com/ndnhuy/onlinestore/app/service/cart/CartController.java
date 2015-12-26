@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
@@ -43,6 +44,8 @@ public class CartController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public RestSuccess addProductIntoCart(@RequestParam(value="insert_product_id", required=true) Integer productId) {
+		//TODO maybe I can try to use PATCH to add product into cart.
+		
 		logger.info("Add to cart of customer [username=" + currentUser.getUsername() + "] " + "the product [id=" + productId + "]");
 		
 		if (productId != null)
@@ -52,7 +55,7 @@ public class CartController {
 								"The product with id " + productId + " has been added into cart of customer id " + currentUser.getCustomerId());
 	}
 	
-	@RequestMapping(value="/{productId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/products/{productId}", method=RequestMethod.DELETE)
 	public RestSuccess removeProductFromCart(@PathVariable("productId") Integer productId) {
 		logger.info("Remove product id " + productId + " from cart of customer [username is " + currentUser.getUsername() + "]");
 		
@@ -61,6 +64,19 @@ public class CartController {
 		return new RestSuccess(HttpStatus.OK.value(), null, "The product id " + productId 
 				+ " has been removed from cart of customer " 
 				+ currentUser.getUsername());
+	}
+	
+	@RequestMapping(value="/products/{productId}", method=RequestMethod.PATCH)
+	public RestSuccess updatePartialProductInCart(@PathVariable("productId") Integer productId, 
+													@RequestParam("quantity") Integer quantity) {
+		logger.info("Partially update product has id " + productId 
+				+ " in cart of customer [username is " 
+				+ currentUser.getUsername() + "]");
+		
+		cartService.updateQuantityOfProductInCart(quantity, currentUser.getCustomerId(), productId);
+		
+		return new RestSuccess(HttpStatus.OK.value(), null,
+				ServletUriComponentsBuilder.fromCurrentContextPath().path("/cart").toUriString());
 	}
 	
 }

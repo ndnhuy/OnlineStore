@@ -1,0 +1,42 @@
+package com.ndnhuy.onlinestore.app.service.customer;
+
+import org.apache.log4j.Logger;
+import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
+import com.ndnhuy.onlinestore.app.dto.customer.BasicCustomerDto;
+import com.ndnhuy.onlinestore.commonutils.Constant;
+import com.ndnhuy.onlinestore.commonutils.CurrentUser;
+import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
+
+@RestController
+@RequestMapping("/myaccount")
+@Secured(Constant.ROLE_USER)
+public class CustomerUserController {
+	
+	private final static Logger logger = Logger.getLogger(CustomerUserController.class);
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private DozerBeanMapper mapper;
+	
+	@Autowired
+	private CurrentUser currentUser;
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public RestSuccess getAccount() {
+		logger.info("Get account of user " + currentUser.getUsername());
+		
+		BasicCustomerDto dto = customerService.findBasicCustomerInfo(currentUser.getCustomerId());
+		
+		return new RestSuccess(HttpStatus.OK.value(), dto, null);
+	}
+}

@@ -1,5 +1,6 @@
 package com.ndnhuy.onlinestore.config;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -31,7 +32,6 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	    ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	    
-//	    System.out.println("STATUS: " + PurchaseStatus.ORDERING.toString());
-	    
+	
 	 }
 }

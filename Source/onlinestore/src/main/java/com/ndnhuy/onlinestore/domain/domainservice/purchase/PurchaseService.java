@@ -9,4 +9,5 @@ public interface PurchaseService extends GenericService<Purchase, PurchaseDto, I
 	void addProductIntoPurchase(Integer productId, Integer purchaseId);
 	boolean removeProductFromPurchase(Integer productId, Integer purchaseId);
 	PurchaseDto findPurchaseByCustomerIdAndStatusId(Integer customerId, Integer statusId);
+	void updateQuantityOfProductInPurchase(Integer quantity, Integer productId, Integer purchaseId);
 }

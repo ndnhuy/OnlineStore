@@ -17,6 +17,9 @@ public class PurchaseDto implements Serializable {
 	@Mapping("products")
 	private Collection<ProductDtoPurchase> products;
 	
+	@Mapping("purchaseStatus.id")
+	private Integer statusId;
+	
 	private Double total;
 	
 	private Integer customerId;
@@ -46,6 +49,12 @@ public class PurchaseDto implements Serializable {
 	}
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+	public Integer getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 	
 	
