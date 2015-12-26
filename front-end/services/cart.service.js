@@ -5,7 +5,8 @@ angular
 	.factory('CartService', function($http, $log, config, $cookies) {
 		var data = {
 			'getProductsInCart': getProductsInCart,
-			'removeProductFromCart': removeProductFromCart
+			'removeProductFromCart': removeProductFromCart,
+			'addProductIntoCart': addProductIntoCart
 		};
 
 		function getProductsInCart() {
@@ -18,24 +19,49 @@ angular
 			})
 			.success(function(data) {
 				$log.info("Get cart at " + config.url + 'cart');
+				return data;
 			})
 			.catch(dataServiceError);
 		}
 
-		return data;
+		function addProductIntoCart(productId) {
+			$http({
+				'url': config.url + 'cart?insert_product_id=' + productId,
+				'method': 'POST',
+				'headers': {
+					'Authorization': $cookies.get('access-token')
+				}
+			})
+			.success(function(data) {
+				$log.info("Add product id " + productId + " to cart " + config.url + 'cart?insert_product_id=' + productId);
+			})
+			.catch(dataServiceError);
+		}
+
+
 
 		function removeProductFromCart(productId, products) {
-			return $http.delete(config.url + 'purchases/products/' + productId)
-					.success(function(data) {
-						$log.info("Remove product id = " + productId + " from cart");
-					})
-					.catch(dataServiceError);
+
+			return $http({
+				'url': config.url + 'cart/' + productId,
+				'method': 'DELETE',
+				'headers': {
+					'Authorization': $cookies.get('access-token')
+				}
+			})
+			.success(function(data) {
+				$log.info("Delete product id " + productId + " from cart " + config.url + 'cart/' + productId);
+			})
+			.catch(dataServiceError);
 		}
 
 		function dataServiceError(errorResponse) {
 	        $log.error('Failed for CartService');
 	        $log.error(errorResponse);
+	        alert(errorResponse.data.message);
 	        return errorResponse;
 	    }
+
+	    return data;
 
 	});

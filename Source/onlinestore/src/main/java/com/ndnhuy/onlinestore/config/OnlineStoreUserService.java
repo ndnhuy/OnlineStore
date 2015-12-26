@@ -39,6 +39,8 @@ public class OnlineStoreUserService implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(customer.getUserRole().getRoleName().toUpperCase()));
 			
 			currentUser.setCustomerId(customer.getId());
+			currentUser.setUsername(username);
+			
 			return new User(customer.getUsername(), customer.getPassword(), authorities);
 		}
 		

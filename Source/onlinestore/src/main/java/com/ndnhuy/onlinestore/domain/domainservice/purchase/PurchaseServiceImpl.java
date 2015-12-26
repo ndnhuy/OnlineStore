@@ -66,9 +66,15 @@ public class PurchaseServiceImpl extends GenericServiceImpl<Purchase, PurchaseDt
 	}
 
 	@Override
-	public void addProductIntoCurrentPurchase(Integer productId) {
-		//TODO treat the cart as the first purchase (id = 1) of this customer
-		Purchase purchase = findCurrentPurchase();
+	public void addProductIntoPurchase(Integer productId, Integer purchaseId) {
+		
+		logger.debug("Add product [id=" + productId + "] into purchase [id=" + purchaseId + "]");
+		
+		Purchase purchase = purchaseRepository.findOne(purchaseId);
+		if (purchase == null) {
+			throw new EntityNotFoundException("Purchase", " cannot add this product into your cart", "The purchase with id " + purchaseId + " not found.");
+		}
+		
 		Product product = productRepository.findOne(productId);
 		if (product == null) {
 			throw new EntityNotFoundException(Purchase.class.getSimpleName(), " which has id " + productId, "id = " + productId);
@@ -94,8 +100,12 @@ public class PurchaseServiceImpl extends GenericServiceImpl<Purchase, PurchaseDt
 	}
 
 	@Override
-	public boolean removeProductFromCurrentPurchase(Integer productId) {
-		Purchase purchase = findCurrentPurchase();
+	public boolean removeProductFromPurchase(Integer productId, Integer purchaseId) {
+		
+		logger.debug("Delete product id " + productId + " from purchase id " + purchaseId);
+		
+		Purchase purchase = purchaseRepository.findOne(purchaseId);
+		
 		Product product = productRepository.findOne(productId);
 		if (product == null) {
 			throw new EntityNotFoundException(Purchase.class.getSimpleName(), " which has id " + productId, "id = " + productId);
@@ -112,11 +122,12 @@ public class PurchaseServiceImpl extends GenericServiceImpl<Purchase, PurchaseDt
 		return false;
 	}
 
-	//TODO why return Purchase??????
 	@Override
-	public Purchase findCurrentPurchase() {
-		return purchaseRepository.findOne(1);
+	public PurchaseDto findPurchaseByCustomerIdAndStatusId(Integer customerId,
+			Integer statusId) {
+		
+		return mapper.map(purchaseRepository.findPurchaseByCustomerIdAndStatusId(customerId, statusId), 
+							PurchaseDto.class);
 	}
-	
 	
 }

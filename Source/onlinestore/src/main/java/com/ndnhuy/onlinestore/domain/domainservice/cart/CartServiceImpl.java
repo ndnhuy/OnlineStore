@@ -1,7 +1,6 @@
 package com.ndnhuy.onlinestore.domain.domainservice.cart;
 
-import javax.servlet.http.HttpServletResponse;
-
+import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,14 +9,15 @@ import com.ndnhuy.onlinestore.app.dto.product.ProductDtoPurchase;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.commonutils.ConstPurchaseStatus;
 import com.ndnhuy.onlinestore.domain.domainservice.product.ProductService;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.repository.PurchaseRepository;
+import com.ndnhuy.onlinestore.domain.domainservice.purchase.PurchaseService;
 
 @Service
 public class CartServiceImpl implements CartService {
 
+	private final static Logger logger = Logger.getLogger(CartServiceImpl.class);
+	
 	@Autowired
-	private PurchaseRepository purchaseRepository;
+	private PurchaseService purchaseService;
 	
 	@Autowired
 	private ProductService productService;
@@ -27,15 +27,15 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public PurchaseDto findCartOfCustomer(Integer customerId) {
-		//TODO temporarily to get the first purchase of specific customer, later must find by order status
-		Purchase purchase = purchaseRepository
+		logger.debug("Find cart of customer [id=" + customerId + "]");
+		
+		PurchaseDto dtoPurchase = purchaseService
 										.findPurchaseByCustomerIdAndStatusId(customerId, 
 																			ConstPurchaseStatus.ORDERING.value());
 		
-		
-		PurchaseDto dtoPurchase = mapper.map(purchase, PurchaseDto.class);
-		
 		Double total = 0.0;
+		
+		logger.debug(String.format("Add extra info into each %s inside %s", ProductDtoPurchase.class.getSimpleName(), PurchaseDto.class.getSimpleName()));
 		for (ProductDtoPurchase p : dtoPurchase.getProducts()) {
 			
 			productService.addExtraInfoInto(p, dtoPurchase.getId());
@@ -44,8 +44,32 @@ public class CartServiceImpl implements CartService {
 		}
 		
 		dtoPurchase.setTotal(total);
+		logger.debug(String.format("Return %s [id=%d, total=%f]", PurchaseDto.class.getSimpleName(), dtoPurchase.getId(), dtoPurchase.getTotal()));
 		
 		return dtoPurchase;
+	}
+
+	@Override
+	public void addProductIntoCart(Integer customerId, Integer productId) {
+		logger.debug("Add product [id=" + productId + "] into cart of customer [id=" + customerId + "]");
+		
+		PurchaseDto dtoPurchase = purchaseService
+				.findPurchaseByCustomerIdAndStatusId(customerId, 
+													ConstPurchaseStatus.ORDERING.value());
+		
+		purchaseService.addProductIntoPurchase(productId, dtoPurchase.getId());
+	}
+
+	@Override
+	public boolean removeProductFromCart(Integer productId, Integer customerId) {
+		
+		logger.debug("Delete product id " + productId + " from cart of customer id " + customerId);
+		
+		PurchaseDto dtoPurchase = purchaseService
+				.findPurchaseByCustomerIdAndStatusId(customerId, 
+													ConstPurchaseStatus.ORDERING.value());
+		
+		return purchaseService.removeProductFromPurchase(productId, dtoPurchase.getId());
 	}
 
 }

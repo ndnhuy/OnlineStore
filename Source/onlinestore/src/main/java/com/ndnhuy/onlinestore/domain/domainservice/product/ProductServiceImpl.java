@@ -1,5 +1,6 @@
 package com.ndnhuy.onlinestore.domain.domainservice.product;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,21 @@ import com.ndnhuy.onlinestore.repository.PurchaseRepository;
 @Service
 public class ProductServiceImpl extends GenericServiceImpl<Product, ProductDto, Integer> implements ProductService {
 
+	private final static Logger logger = Logger.getLogger(ProductServiceImpl.class);
+	
 	@Autowired
 	private PurchaseRepository purchaseRepository;
 	
 	@Override
 	public void addExtraInfoInto(ProductDtoPurchase dto, Integer purchaseId) {
+		logger.debug("Add extra info (quantity, subtotal) into ProductDtoPurchase [id=" + dto.getId() + ", name=" + dto.getName() + "]");
+		
 		dto.setQuantity(purchaseRepository
 								.findQuantityOfProductInPurchase(purchaseId, dto.getId()));
 		
 		dto.setSubtotal(dto.getPrice() * dto.getQuantity());
+
+		logger.debug("ProductDtoPurchase has quantity " + dto.getQuantity() + " and subtotal " + dto.getSubtotal());
 	}
 	
 }

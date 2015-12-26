@@ -75,30 +75,30 @@ public class PurchaseController {
 				ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newlyCreatedPurchase.getId()).toUriString());
 	}
 	
-	@RequestMapping(value="/products", method=RequestMethod.POST)
-	public RestSuccess addProductIntoCart(@RequestParam("product_id") Integer productId) {
-		logger.info("Add product [id = " + productId + "] into cart");
-		
-		purchaseService.addProductIntoCurrentPurchase(productId);
-		
-		return new RestSuccess(HttpStatus.CREATED.value(), null, null);
-	}
+//	@RequestMapping(value="/products", method=RequestMethod.POST)
+//	public RestSuccess addProductIntoCart(@RequestParam("product_id") Integer productId) {
+//		logger.info("Add product [id = " + productId + "] into cart");
+//		
+//		purchaseService.addProductIntoCurrentPurchase(productId);
+//		
+//		return new RestSuccess(HttpStatus.CREATED.value(), null, null);
+//	}
 	
-	@RequestMapping(value="/products/{productId}", method=RequestMethod.DELETE)
-	public RestSuccess removeProductFromCurrentPurchase(@PathVariable("productId") Integer productId) {
-		logger.info("Remove product [id=" + productId + "] from current purchase");
-		
-		String message = "";
-		if (purchaseService.removeProductFromCurrentPurchase(productId)) {
-			logger.info("Remove successfully");
-			message = "Product id = " + productId + " has been removed from current purchase";
-		}
-		else {
-			logger.info("Remove unsuccessfully. The product [id=" + productId + "] does not exist in current purchase");
-			message = "Product id = " + productId + " does not exist in current purchase";
-		}
-		
-		return new RestSuccess(HttpStatus.OK.value(), null, message);
-
-	}
+//	@RequestMapping(value="/products/{productId}", method=RequestMethod.DELETE)
+//	public RestSuccess removeProductFromCurrentPurchase(@PathVariable("productId") Integer productId) {
+//		logger.info("Remove product [id=" + productId + "] from current purchase");
+//		
+//		String message = "";
+//		if (purchaseService.removeProductFromCurrentPurchase(productId)) {
+//			logger.info("Remove successfully");
+//			message = "Product id = " + productId + " has been removed from current purchase";
+//		}
+//		else {
+//			logger.info("Remove unsuccessfully. The product [id=" + productId + "] does not exist in current purchase");
+//			message = "Product id = " + productId + " does not exist in current purchase";
+//		}
+//		
+//		return new RestSuccess(HttpStatus.OK.value(), null, message);
+//
+//	}
 }

@@ -6,8 +6,7 @@ angular
 
 		var data = {
 			'getProducts': getProducts,
-			'getProductById': getProductById,
-			'addProductIntoCart': addProductIntoCart
+			'getProductById': getProductById
 		};
 
 		function getProducts() {
@@ -24,13 +23,6 @@ angular
 				.success(function(data) {
 					return data;
 				});
-		}
-
-		function addProductIntoCart(productId) {
-			$http.post(config.url + 'purchases/products?product_id=' + productId)
-					.success(function(data) {
-						$log.info("Add product [id=" + productId + "] into cart");
-					});
 		}
 
 		return data;
