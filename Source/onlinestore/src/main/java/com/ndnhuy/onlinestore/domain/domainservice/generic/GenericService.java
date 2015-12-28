@@ -19,6 +19,6 @@ public interface GenericService<E, D, ID extends Serializable> {
 	D add(D dto);
 	void delete(ID id);
 	Collection<D> findAll();
-	D udpate(D updatedInfo);
+	D update(D updatedInfo);
 	D updateChanges(ID id, Patch partialChanges);
 }

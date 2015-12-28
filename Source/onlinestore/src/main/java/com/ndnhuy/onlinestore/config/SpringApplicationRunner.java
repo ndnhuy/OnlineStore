@@ -32,6 +32,8 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	 public static void main(String[] args) {
 	    ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	    
-	
+//	    UserRoleRepository repo = ctx.getBean(UserRoleRepository.class);
+//	    UserRole u = repo.findByRoleNameIgnoreCase("ROLE_USER");
+//	    System.out.println("AAAAAA: " + u.getRoleName());
 	 }
 }

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -41,6 +43,9 @@ public class Customer implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="role_id")
 	private UserRole userRole;
+	
+	@OneToOne(mappedBy="customer",cascade=CascadeType.ALL)
+	private CustomerDetail customerDetail;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer", cascade=CascadeType.ALL)
 	private Collection<Purchase> purchases;
@@ -91,6 +96,14 @@ public class Customer implements Serializable {
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public CustomerDetail getCustomerDetail() {
+		return customerDetail;
+	}
+
+	public void setCustomerDetail(CustomerDetail customerDetail) {
+		this.customerDetail = customerDetail;
 	}
 	
 	

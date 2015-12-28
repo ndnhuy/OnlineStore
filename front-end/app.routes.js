@@ -37,6 +37,19 @@ function config($routeProvider) {
 			templateUrl: 'sections/login/login.template.html',
 			controller: 'LoginController as loginCtrl'
 		})
+		.when('/register', {
+			templateUrl: 'sections/registry/register.template.html',
+			controller: 'RegisterController as registerCtrl'
+		})
+		.when('/myaccount', {
+			templateUrl: 'sections/account/account.template.html',
+			controller: 'AccountController as accountCtrl',
+			resolve: {
+				user : function(AccountService) {
+					return AccountService.getAccount();
+				}
+			}
+		})
 		.otherwise({
             redirectTo: '/'
         });

@@ -93,9 +93,10 @@ public class CustomerController {
 		
 		dto.setId(id);
 		
-		return customerService.udpate(dto);
+		return customerService.update(dto);
 	}
 	
+	//TODO use PATCH to update changes on customer
 	@RequestMapping(value="/{id}", method=RequestMethod.PATCH)
 	public CustomerDto updatePartialCustomer(@PathVariable("id") Integer id, @RequestBody Patch patch) {
 		logger.info("Partially update customer " + id + " s: " + ToStringBuilder.reflectionToString(patch));

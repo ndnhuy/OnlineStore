@@ -11,7 +11,6 @@ angular
         	CartService.removeProductFromCart(productId).then(function() {
                 CartService.getProductsInCart()
                     .then(function(data) {
-                        $log.info("DATA: " + JSON.stringify(data.data));
                         vm.products = data.data.data.products;
                         vm.total = data.data.data.total;
                     });

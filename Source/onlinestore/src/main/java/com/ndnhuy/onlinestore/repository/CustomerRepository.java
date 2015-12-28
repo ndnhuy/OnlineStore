@@ -7,4 +7,5 @@ import com.ndnhuy.onlinestore.domain.entity.Purchase;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	Customer findByUsername(String username);
+	Customer findByEmail(String email);
 }

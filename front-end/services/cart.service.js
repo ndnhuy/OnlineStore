@@ -43,7 +43,7 @@ angular
 		function removeProductFromCart(productId, products) {
 
 			return $http({
-				'url': config.url + 'cart/' + productId,
+				'url': config.url + 'cart/products/' + productId,
 				'method': 'DELETE',
 				'headers': {
 					'Authorization': $cookies.get('access-token')
@@ -51,6 +51,20 @@ angular
 			})
 			.success(function(data) {
 				$log.info("Delete product id " + productId + " from cart " + config.url + 'cart/' + productId);
+			})
+			.catch(dataServiceError);
+		}
+
+		function updateQuantityOfProduct(quantity, productId) {
+			return $http({
+				'url': config.url + 'cart/products/1?quantity=' + quantity,
+				'method': 'PATCH',
+				'headers': {
+					'Authorization': $cookies.get('access-token')
+				}
+			})
+			.success(function(data) {
+				$log.info("Update quantity of product id " + productId + " config.url + 'cart/products/1?quantity=' + quantity");
 			})
 			.catch(dataServiceError);
 		}

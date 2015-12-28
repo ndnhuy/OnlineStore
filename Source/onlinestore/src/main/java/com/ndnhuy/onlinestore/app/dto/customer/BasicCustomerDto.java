@@ -19,9 +19,17 @@ public class BasicCustomerDto implements Serializable {
 	
 	@Mapping("email")
 	@UniqueInRepository
-	@Size(min = 0, max = 20, message = "'email' " + "{javax.validation.constraints.Size.message}")
+	@Size(min = 0, max = 50, message = "'email' " + "{javax.validation.constraints.Size.message}")
 	@Email
 	private String email;
+	
+	@Mapping("customerDetail.address.street")
+	@Size(min = 0, max = 100, message = "'street' " + "{javax.validation.constraints.Size.message}")
+	private String street;
+	
+	@Mapping("customerDetail.address.city")
+	@Size(min = 0, max = 30, message = "'city' " + "{javax.validation.constraints.Size.message}")
+	private String city;
 
 	public String getUsername() {
 		return username;
@@ -37,6 +45,22 @@ public class BasicCustomerDto implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	

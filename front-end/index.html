@@ -1,17 +1,17 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE HTML>
 <html>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="sections/cart/cart.css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" /> 
+
 </head>
 <body ng-app="app">
-  <ng-view></ng-view> 
+       <div ng-include="'components/menu/menu.template.html'"></div>    
+
+
+
+      <ng-view></ng-view> 
 
   
       <!-- Libraries -->
@@ -36,6 +36,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <script src="sections/product-detail/product-detail.controller.js"></script>
       <script src="sections/cart/cart.controller.js"></script>
       <script src="sections/login/login.controller.js"></script>
+      <script src="sections/registry/register.controller.js"></script>
+      <script src="sections/account/account.controller.js"></script>
+      <script src="components/menu/menu.controller.js"></script>
 
 
       <!-- SERVICES -->
@@ -43,5 +46,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <script src="services/product.service.js"></script>
       <script src="services/cart.service.js"></script>
       <script src="services/authentication.service.js"></script>
+      <script src="services/account.service.js"></script>
+
 </body>
 </html>

@@ -101,7 +101,7 @@ public abstract class GenericServiceImpl<E, D, ID extends Serializable> implemen
 	}
 
 	@Override
-	public D udpate(D updatedInfo) {
+	public D update(D updatedInfo) {
 		if (logger.isDebugEnabled())
 			logger.debug("Update " + entityType.getName() + " with " + ToStringBuilder.reflectionToString(updatedInfo));
 		

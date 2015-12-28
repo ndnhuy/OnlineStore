@@ -1,67 +1,41 @@
 package com.ndnhuy.onlinestore.app.service.common;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.transaction.Transactional;
 
-import org.apache.commons.lang3.ArrayUtils;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.sync.Patch;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ndnhuy.onlinestore.domain.entity.Product;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.domain.entity.PurchaseProduct;
-import com.ndnhuy.onlinestore.repository.ProductRepository;
-import com.ndnhuy.onlinestore.repository.PurchaseRepository;
+import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
+import com.ndnhuy.onlinestore.domain.entity.Address;
+import com.ndnhuy.onlinestore.domain.entity.Customer;
+import com.ndnhuy.onlinestore.domain.entity.CustomerDetail;
+import com.ndnhuy.onlinestore.repository.CustomerRepository;
 
 @RestController
+@Transactional
 public class HomeController {
 	
 	@Autowired
-	PurchaseRepository repo;
+	private CustomerRepository repo;
 	
 	@Autowired
-	ProductRepository productRepo;
+	private DozerBeanMapper mapper;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public Integer home() {
+		return 1;
+	}
+	@RequestMapping(value="/", method=RequestMethod.PATCH)
+	public Integer home2(@RequestBody Patch patch) {
 		
-		Purchase p = repo.findOne(1);
-		
-//		for (PurchaseProduct pd : p.getPurchaseProducts()) {
-//			System.out.println(pd.getProduct().getName());
-//			System.out.println(pd.getPurchase().getId());
-//		}
-		
-//		PurchaseProduct pd = new PurchaseProduct();
+//		CustomerDto dto
 //		
-//		Product product = productRepo.findOne(2);
-//	
-//		
-//		pd.setProduct(product);
-//		pd.setPurchase(p);
-//		pd.setQuantity(99);
-//		
-////		p.getPurchaseProducts().get(0);
-//		
-//		for (PurchaseProduct pd2 : p.getPurchaseProducts()) {
-//			System.out.println("-----1------");
-//			System.out.println(pd2.getProduct().getName());
-//			System.out.println(pd2.getPurchase().getId());
-//		}
-//		
-////		p.getPurchaseProducts().add(pd);
-//		p.getPurchaseProducts().remove(1);
-//		
-//		for (PurchaseProduct pd2 : p.getPurchaseProducts()) {
-//			System.out.println("-----2------");
-//			System.out.println(pd2.getProduct().getName());
-//			System.out.println(pd2.getPurchase().getId());
-//		}
-//		
-//		repo.save(p);
-
+//		CustomerDto modifiedDto = patch.apply(in, type)
 		
 		return 1;
 	}
