@@ -144,13 +144,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h4>Colors</h4>
                         <div class="row row1 scroll-pane">
                             <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Red</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" checked="" data-ng-model="productCtrl.colors.red" data-ng-true-value="'red'" data-ng-click="productCtrl.reloadProducts()"><i></i>Red</label>
                             </div>
                             <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Green</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Black</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Yellow</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Orange</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.colors.green" data-ng-true-value="'green'" data-ng-click="productCtrl.reloadProducts()"><i></i>Green</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.colors.black" data-ng-true-value="'black'" data-ng-click="productCtrl.reloadProducts()"><i></i>Black</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.colors.yellow" data-ng-true-value="'yellow'" data-ng-click="productCtrl.reloadProducts()"><i></i>Yellow</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.colors.white" data-ng-true-value="'white'" data-ng-click="productCtrl.reloadProducts()"><i></i>White</label>
                             </div>
                         </div>
                </section>

@@ -58,6 +58,14 @@ angular
 	        		});
 	        	}
 	        });
+	        angular.forEach(vm.colors, function(value, key) {
+	        	
+	        	if (value != false) {
+	        		$scope.productQueryParams.push({
+	        			'color' : value
+	        		});
+	        	}
+	        });
 
         	ProductService.getProducts($scope.productQueryParams)
         				.then(function(data) {
