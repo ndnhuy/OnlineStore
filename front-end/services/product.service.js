@@ -9,12 +9,38 @@ angular
 			'getProductById': getProductById
 		};
 
-		function getProducts() {
-			return $http.get(config.url + 'products')
-			.success(function(data, status, headers, config) {
+		function makeRequest(url, params) {
+			if (params == null) {
+				params = {};
+			}
+
+	        var requestUrl = url + '?';
+	        angular.forEach(params, function(value, key){
+	            requestUrl = requestUrl + '&' + key + '=' + value;
+	        });
+	        return requestUrl;
+    }
+
+		function getProducts(productQueryParams) {
+			if (productQueryParams == null) {
+				productQueryParams = [];
+			}
+
+			var requestUrl = config.url + 'products?';
+			angular.forEach(productQueryParams, function(value, key) {
+        		angular.forEach(value, function (value, key) {
+        			requestUrl = requestUrl + '&' + key + '=' + value;
+        		});
+        		
+        	});
+
+        	$log.info('getProducts#requestUrl = ' + requestUrl);
+
+			return $http.get(requestUrl)
+				.success(function(data, status, headers, config) {
 				return data;
-			})
-			.catch(dataServiceError);
+				})
+				.catch(dataServiceError);
 		}
 
 

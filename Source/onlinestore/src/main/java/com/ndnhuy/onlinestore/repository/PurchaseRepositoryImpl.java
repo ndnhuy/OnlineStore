@@ -8,6 +8,8 @@ public class PurchaseRepositoryImpl implements PurchaseCustomRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	
 	@Override
 	public Integer findQuantityOfProductInPurchase(Integer purchaseId,
 			Integer productId) {
@@ -15,6 +17,7 @@ public class PurchaseRepositoryImpl implements PurchaseCustomRepository {
 				+ "WHERE purchase_product.purchase_id = " + purchaseId
 				+ " AND purchase_product.product_id = " + productId)
 		.getSingleResult();
+		
 		return quantity;
 	}
 

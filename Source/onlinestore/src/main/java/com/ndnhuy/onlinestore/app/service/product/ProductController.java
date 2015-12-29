@@ -2,17 +2,17 @@ package com.ndnhuy.onlinestore.app.service.product;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
-import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.product.ProductDto;
 import com.ndnhuy.onlinestore.domain.domainservice.product.ProductService;
 
@@ -27,10 +27,10 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public RestSuccess getProducts() {
+	public RestSuccess getProducts(HttpServletRequest request) {
 		logger.info("Get all products");
 		
-		Collection<ProductDto> dtoProducts = productService.findAll();
+		Collection<ProductDto> dtoProducts = productService.filter(request);
 		
 		logger.info("Products: ");
 		for (ProductDto dto : dtoProducts) {
@@ -50,4 +50,5 @@ public class ProductController {
 		
 		return new RestSuccess(HttpStatus.OK.value(), dtoProduct, null);
 	}
+	
 }

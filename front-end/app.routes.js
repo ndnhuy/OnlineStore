@@ -11,7 +11,7 @@ function config($routeProvider) {
 			controller: 'ProductController as productCtrl',
 			resolve: {
 				products: function(ProductService) {
-					return ProductService.getProducts();
+					return ProductService.getProducts(null);
 				}
  			}
 		})
@@ -46,7 +46,7 @@ function config($routeProvider) {
 			controller: 'AccountController as accountCtrl',
 			resolve: {
 				user : function(AccountService) {
-					return AccountService.getAccount();
+					return AccountService.getAccount;
 				}
 			}
 		})

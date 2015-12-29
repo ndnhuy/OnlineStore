@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+import com.ndnhuy.onlinestore.domain.entity.product.Product;
+
 @Embeddable
 public class PurchaseProductId implements Serializable {
 

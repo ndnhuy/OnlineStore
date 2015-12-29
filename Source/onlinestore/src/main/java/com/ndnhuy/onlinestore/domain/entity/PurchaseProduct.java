@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.ndnhuy.onlinestore.domain.entity.product.Product;
+
 @Entity
 @Table(name="purchase_product")
 @AssociationOverrides({

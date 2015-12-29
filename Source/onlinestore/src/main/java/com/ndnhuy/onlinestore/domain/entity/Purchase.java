@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.ndnhuy.onlinestore.domain.entity.product.Product;
+
 @Entity
 @Table(name="purchase")
 public class Purchase {

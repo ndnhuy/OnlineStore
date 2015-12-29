@@ -100,74 +100,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <div class="wrap">
             <div class="rsidebar span_1_of_left">
                    <section  class="sky-form">
-                      <h4>Occasion</h4>
+                      
+                      <h4>Operating System</h4>
                         <div class="row row1 scroll-pane">
                             <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Athletic (20)</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.operatingSystems.iOS" data-ng-true-value="'iOS'" data-ng-click="productCtrl.reloadProducts()"><i></i>iOS</label>
                             </div>
                             <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Athletic Shoes (48)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casual (45)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casual (45)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other (1)</label>
-                            </div>
-                         </div>
-                      <h4>Category</h4>
-                        <div class="row row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Flats (70)</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Athletic Shoes (48)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Athletic Shoes (48)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Heels (38)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other (1)</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.operatingSystems.android" data-ng-true-value="'android'" data-ng-click="productCtrl.reloadProducts()"><i></i>Android</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.operatingSystems.windowsPhone" data-ng-true-value="'Windows Phone'" data-ng-click="productCtrl.reloadProducts()"><i></i>Windows Phone</label>
                             </div>
                         </div>
-                     <h4>Styles</h4>
-                        <div class="row row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Athletic (20)</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Ballerina (5)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Pumps (7)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>High Tops (2)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other (1)</label>
-                            </div>
-                        </div>
+                    
                 </section>
                 <section  class="sky-form">
                     <h4>Brand</h4>
                         <div class="row row1 scroll-pane">
                             <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Adidas by Stella McCartney</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Asics</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Bloch</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Bloch Kids</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Capezio</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>Capezio Kids</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Nike</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Zumba</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.brands.apple" data-ng-true-value="'apple'" data-ng-click="productCtrl.reloadProducts()"><i></i>Apple</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.brands.samsung" data-ng-true-value="'samsung'" data-ng-click="productCtrl.reloadProducts()"><i></i>Samsung</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.brands.lg" data-ng-true-value="'lg'" data-ng-click="productCtrl.reloadProducts()"><i></i>LG</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.brands.sony" data-ng-true-value="'sony'" data-ng-click="productCtrl.reloadProducts()"><i></i>Sony</label>
+                                <label class="checkbox"><input type="checkbox" name="checkbox" data-ng-model="productCtrl.brands.nexus" data-ng-true-value="'nexus'" data-ng-click="productCtrl.reloadProducts()"><i></i>Nexus</label>
                             </div>
                         </div>
                </section>
-               <section  class="sky-form">
-                    <h4>Heel Height</h4>
-                        <div class="row row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Flat (20)</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Under 1in(5)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>1in - 1 3/4 in(5)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>2in - 2 3/4 in(3)</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>3in - 3 3/4 in(2)</label>
-                            </div>
-                        </div>
-               </section>
+               
                <section  class="sky-form">
                     <h4>Price</h4>
                         <div class="row row1 scroll-pane">
@@ -239,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                      <div class="view1 view-fifth1">
                       <div class="top_box">
                         <h3 class="m_1">{{product.name}}</h3>
-                        <p class="m_2">Lorem ipsum</p>
+                        <p class="m_2">{{product.brandName}}</p>
                          <div class="grid_img">
                            <div class="css3"><img src="assets/images/pic11.jpg" alt=""/></div>
                               <div class="mask1">

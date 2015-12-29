@@ -14,6 +14,15 @@ public class ProductDto implements Serializable {
 	@Mapping("price")
 	Double price;
 	
+	@Mapping("operatingSystem.name")
+	String operatingSystemName;
+	
+	@Mapping("brand.name")
+	String brandName;
+	
+	@Mapping("color")
+	String color;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -32,4 +41,24 @@ public class ProductDto implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	public String getOperatingSystemName() {
+		return operatingSystemName;
+	}
+	public void setOperatingSystemName(String operatingSystemName) {
+		this.operatingSystemName = operatingSystemName;
+	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	
 }

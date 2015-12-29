@@ -7,7 +7,7 @@ import org.dozer.Mapping;
 
 import com.ndnhuy.onlinestore.app.dto.product.ProductDto;
 import com.ndnhuy.onlinestore.app.dto.product.ProductDtoPurchase;
-import com.ndnhuy.onlinestore.domain.entity.Product;
+import com.ndnhuy.onlinestore.domain.entity.product.Product;
 
 public class PurchaseDto implements Serializable {
 	

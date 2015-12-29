@@ -1,6 +1,12 @@
 package com.ndnhuy.onlinestore.config;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.dozer.DozerBeanMapper;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.ejb.HibernateEntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -17,6 +23,9 @@ import com.ndnhuy.onlinestore.commonutils.EntityManagerProvider;
 
 @Configuration
 public class OnlineStoreConfig {
+	
+	@PersistenceContext
+	private EntityManager em;
 	
 	@Bean
 	public DozerBeanMapper dozerBeanMapper() {
@@ -51,6 +60,10 @@ public class OnlineStoreConfig {
         };
     }
     
+    
+    public Session getSession(SessionFactory factory) {
+    	return factory.getCurrentSession();
+    }
     
 //    @Bean
 //    public DataSource dataSource() {
