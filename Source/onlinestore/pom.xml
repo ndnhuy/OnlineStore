@@ -93,8 +93,7 @@
     <dependency>
 		<groupId>org.postgresql</groupId>
 		<artifactId>postgresql</artifactId>
-		<version>9.4-1204-jdbc41</version>
-	</dependency>
+		</dependency>
 
     
     <dependency>
@@ -115,6 +114,14 @@
 		<artifactId>hibernate-c3p0</artifactId>
 		<version>4.3.11.Final</version>
 	</dependency>
+    
+    <!-- Jasper Report -->
+	<dependency>
+		<groupId>net.sf.jasperreports</groupId>
+		<artifactId>jasperreports</artifactId>
+		<version>6.1.1</version>
+	</dependency>
+
     
     
   </dependencies>
