@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.entity;
+package com.ndnhuy.onlinestore.domain.entity.purchase;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;

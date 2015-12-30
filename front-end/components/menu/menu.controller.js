@@ -4,9 +4,9 @@ angular
     .controller('MenuController', function($scope, User, AccountService) {
         //Setup the view model object
         var vm = this;
-        // vm.user = User;
+        vm.user = User;
 
-        // if (User.username == null) {
-        // 	AccountService.getAccount();
-        // }
+        if (User.username == null) {
+        	AccountService.getAccount();
+        }
     });

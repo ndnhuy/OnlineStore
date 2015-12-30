@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
+import com.ndnhuy.onlinestore.app.dto.purchase.OrderDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.commonutils.Constant;
 import com.ndnhuy.onlinestore.commonutils.CurrentUser;
 import com.ndnhuy.onlinestore.domain.domainservice.cart.CartService;
+import com.ndnhuy.onlinestore.domain.domainservice.purchase.OrderService;
 
 
 @RestController
@@ -26,6 +29,7 @@ public class CartController {
 
 	@Autowired
 	private CartService cartService;
+	
 	
 	@Autowired
 	private CurrentUser currentUser;
@@ -77,6 +81,12 @@ public class CartController {
 		
 		return new RestSuccess(HttpStatus.OK.value(), null,
 				ServletUriComponentsBuilder.fromCurrentContextPath().path("/cart").toUriString());
+	}
+	
+	@RequestMapping(value="/checkout", method=RequestMethod.POST)
+	public RestSuccess checkout(@RequestBody OrderDto orderDto) {
+		
+		return new RestSuccess(HttpStatus.CREATED.value(), cartService.checkout(currentUser.getCustomerId(), orderDto), null);
 	}
 	
 }

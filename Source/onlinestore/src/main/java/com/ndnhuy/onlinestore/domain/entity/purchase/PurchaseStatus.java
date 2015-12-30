@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.entity;
+package com.ndnhuy.onlinestore.domain.entity.purchase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +19,12 @@ public class PurchaseStatus {
 	
 	@Column(name="status_name")
 	private String statusName;
+
+	
+	public PurchaseStatus() {}
+	public PurchaseStatus(String statusName) {
+		this.statusName = statusName;
+	}
 
 	public Integer getId() {
 		return id;

@@ -18,7 +18,7 @@ import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
+import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
 
 @RestController
 @RequestMapping("/customers")

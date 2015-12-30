@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.domain.entity.PurchaseProduct;
+import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
+import com.ndnhuy.onlinestore.domain.entity.purchase.PurchaseProduct;
 
 @Entity
 @Table(name="product")

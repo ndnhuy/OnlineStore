@@ -6,7 +6,8 @@ angular
 		var data = {
 			'getProductsInCart': getProductsInCart,
 			'removeProductFromCart': removeProductFromCart,
-			'addProductIntoCart': addProductIntoCart
+			'addProductIntoCart': addProductIntoCart,
+			'checkout': checkout
 		};
 
 		function getProductsInCart() {
@@ -67,6 +68,21 @@ angular
 				$log.info("Update quantity of product id " + productId + " config.url + 'cart/products/1?quantity=' + quantity");
 			})
 			.catch(dataServiceError);
+		}
+
+		function checkout(order) {
+			return $http({
+				'url': config.url + 'cart/checkout',
+				'method': 'POST',
+				'headers': {
+					'Authorization': $cookies.get('access-token')
+				},
+				'data': order
+			})
+			.success(function(data) {
+				$log.info("Checkout " + JSON.stringify(order));
+			})
+			.catch(dataServiceError);;
 		}
 
 		function dataServiceError(errorResponse) {

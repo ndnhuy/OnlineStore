@@ -1,7 +1,8 @@
 package com.ndnhuy.onlinestore.commonutils;
 
 public enum ConstPurchaseStatus {
-	ORDERING(1, "ORDERING");
+	ORDERING(1, "ORDERING"),
+	CLOSED(2, "CLOSED");
 
 	private final int value;
 	private final String statusName;

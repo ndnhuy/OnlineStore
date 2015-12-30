@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.entity;
+package com.ndnhuy.onlinestore.domain.entity.purchase;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.ndnhuy.onlinestore.domain.entity.Customer;
 import com.ndnhuy.onlinestore.domain.entity.product.Product;
 
 @Entity

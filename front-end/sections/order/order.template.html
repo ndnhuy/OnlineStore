@@ -1,0 +1,61 @@
+<head>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+
+<h1>Orders</h1>
+<div class="order" data-ng-repeat="order in orderCtrl.orders">
+	<h2>#{{order.id}} - Status: {{order.orderStatus}}</h2>
+	<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<td>Username</td>
+			<td>Email</td>
+			<td>Country</td>
+			<td>City</td>
+			<td>Region</td>
+			<td>Street</td>
+		</tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td>{{orderCtrl.user.username}}</td>
+		<td>{{orderCtrl.user.email}}</td>
+		<td>{{order.country}}</td>
+		<td>{{order.city}}</td>
+		<td>{{order.region}}</td>
+		<td>{{order.street}}</td>
+	  </tr>
+
+	</tbody>
+
+	</table>
+	<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<td>Product Name</td>
+			<td>Quantity</td>
+			<td>Unit Price</td>
+			<td>Total</td>
+		</tr>
+	</thead>
+	<tbody>
+	  <tr data-ng-repeat="product in order.products">
+	    <td>{{product.name}}</td>
+	    <td>{{product.quantity}}</td>
+	    <td>{{product.price}}</td>
+	    <td>{{product.subtotal}}</td>
+	  </tr>
+
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3" class="text-right">Total</td>
+			<td>${{order.total}}</td>
+		</tr>
+	</tfoot>
+	</table>
+	<div data-ng-if="order.orderStatus == 'NEW'">
+		<button class="btn">DELETE</button>
+	</div>
+</div>

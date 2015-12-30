@@ -2,6 +2,9 @@ package com.ndnhuy.onlinestore.domain.domainservice.purchase;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,9 +14,9 @@ import com.ndnhuy.onlinestore.app.dto.product.ProductDtoPurchase;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.domainservice.product.ProductService;
-import com.ndnhuy.onlinestore.domain.entity.Purchase;
-import com.ndnhuy.onlinestore.domain.entity.PurchaseProduct;
 import com.ndnhuy.onlinestore.domain.entity.product.Product;
+import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
+import com.ndnhuy.onlinestore.domain.entity.purchase.PurchaseProduct;
 import com.ndnhuy.onlinestore.domain.exception.AppException;
 import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 import com.ndnhuy.onlinestore.repository.ProductRepository;
@@ -125,16 +128,21 @@ public class PurchaseServiceImpl extends GenericServiceImpl<Purchase, PurchaseDt
 	}
 
 	@Override
-	public PurchaseDto findPurchaseByCustomerIdAndStatusId(Integer customerId,
+	public List<PurchaseDto> findPurchaseByCustomerIdAndStatusId(Integer customerId,
 			Integer statusId) {
 		
-		Purchase purchase = purchaseRepository.findPurchaseByCustomerIdAndStatusId(customerId, statusId);
-		if (purchase == null) {
+		List<Purchase> purchases = purchaseRepository.findPurchaseByCustomerIdAndStatusId(customerId, statusId);
+		if (purchases == null || purchases.isEmpty()) {
 			throw new EntityNotFoundException(Purchase.class.getSimpleName(), " of customer with id " + customerId, 
 																				" of customer with id " + customerId);
 		}
 		
-		return mapper.map(purchase, PurchaseDto.class);
+		List<PurchaseDto> dtoPurchases = new ArrayList<PurchaseDto>();
+		for (Purchase p : purchases) {
+			dtoPurchases.add(mapper.map(p, PurchaseDto.class));
+		}
+		
+		return dtoPurchases;
 	}
 
 	@Override

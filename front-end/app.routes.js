@@ -50,6 +50,27 @@ function config($routeProvider) {
 				}
 			}
 		})
+		.when('/checkout', {
+			templateUrl: 'sections/checkout/checkout.template.html',
+			controller: 'CheckoutController as checkoutCtrl',
+			resolve: {
+				products : function(CartService) {
+					return CartService.getProductsInCart();
+				}
+			}
+		})
+		.when('/orders', {
+			templateUrl: 'sections/order/order.template.html',
+			controller: 'OrderController as orderCtrl',
+			resolve: {
+				orders : function(OrderService) {
+					return OrderService.getOrders();
+				},
+				user: function(AccountService) {
+					return AccountService.getAccount();
+				}
+			}
+		})
 		.otherwise({
             redirectTo: '/'
         });

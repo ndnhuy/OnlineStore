@@ -19,13 +19,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
+
 @Entity
 @Table(name="customer")
 public class Customer implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
-	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
+	@Column(name="id")
 	private Integer id;
 	
 	@Column(name="username")
