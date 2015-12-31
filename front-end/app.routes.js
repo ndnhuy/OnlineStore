@@ -46,7 +46,7 @@ function config($routeProvider) {
 			controller: 'AccountController as accountCtrl',
 			resolve: {
 				user : function(AccountService) {
-					return AccountService.getAccount;
+					return AccountService.getAccount();
 				}
 			}
 		})
@@ -68,6 +68,27 @@ function config($routeProvider) {
 				},
 				user: function(AccountService) {
 					return AccountService.getAccount();
+				}
+			}
+		})
+		.when('/customers', {
+			templateUrl: 'sections/customer/customer.template.html',
+			controller: 'CustomerController as customerCtrl',
+			resolve: {
+				customers : function(CustomerService) {
+					return CustomerService.getCustomers();
+				}
+			}
+		})
+		.when('/customers/:customerId/orders', {
+			templateUrl: 'sections/order-manage/order-manage.template.html',
+			controller: 'OrderManageController as orderManageCtrl',
+			resolve: {
+				orders : function(OrderService, $route) {
+					return OrderService.getOrdersOfCustomer($route.current.params.customerId);
+				},
+				customer: function(CustomerService, $route) {
+					return CustomerService.getCustomer($route.current.params.customerId);
 				}
 			}
 		})

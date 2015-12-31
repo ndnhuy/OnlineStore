@@ -1,15 +1,18 @@
 <div class="header-top" data-ng-controller="MenuController as MenuCtrl">
          <div class="wrap"> 
             <div class="logo">
-                <a href="index.html"><img src="assets/images/logo.png" alt=""/></a>
+                <a href="#/"><img src="assets/images/logo.png" alt=""/></a>
             </div>
             <div class="cssmenu">
                <ul>
-                 <li><a href="#/register">Sign up</a></li> 
-                 <li><a href="shop.html">Store Locator</a></li> 
-                 <li><a href="#/login" data-ng-if="MenuCtrl.user.username == null">MY ACCOUNT</a></li> 
+                 <li><a href="#/register" data-ng-if="MenuCtrl.user.username == null">Sign up</a></li> 
+                 <li><a href="#/login" data-ng-if="MenuCtrl.user.username == null">Login</a></li> 
                  <li><a href="#/myaccount" data-ng-if="MenuCtrl.user.username != null">{{MenuCtrl.user.username}}</a></li>
-                 <li><a href="checkout.html">CheckOut</a></li> 
+                 <li><a href="" data-ng-if="MenuCtrl.user.username != null" data-ng-click="MenuCtrl.logout()">Logout</a></li> 
+                 <li><a href="#/cart" data-ng-if="MenuCtrl.user.username != null && MenuCtrl.user.role != 'role_admin'">Cart</a></li> 
+                 <li><a href="#/orders" data-ng-if="MenuCtrl.user.username != null && MenuCtrl.user.role != 'role_admin'">View Orders</a></li> 
+                 <li><a href="#/customers" data-ng-if="MenuCtrl.user.role == 'role_admin'">View Customers</a></li> 
+
                </ul>
             </div>
             <ul class="icon2 sub-icon2 profile_img">

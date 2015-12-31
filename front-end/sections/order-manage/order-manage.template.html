@@ -5,7 +5,7 @@
 
 <div class="container">
 	<h1>Orders</h1>
-<div class="order" data-ng-repeat="order in orderCtrl.orders">
+<div class="order" data-ng-repeat="order in orderManageCtrl.orders">
 	<h2>#{{order.id}} - Status: {{order.orderStatus}}</h2>
 	<table class="table table-bordered table-hover">
 	<thead>
@@ -20,8 +20,8 @@
 	</thead>
 	<tbody>
 	  <tr>
-	    <td>{{orderCtrl.user.username}}</td>
-		<td>{{orderCtrl.user.email}}</td>
+	    <td>{{orderManageCtrl.customer.username}}</td>
+		<td>{{orderManageCtrl.customer.email}}</td>
 		<td>{{order.country}}</td>
 		<td>{{order.city}}</td>
 		<td>{{order.region}}</td>
@@ -57,8 +57,7 @@
 	</tfoot>
 	</table>
 	<div data-ng-if="order.orderStatus == 'NEW'">
-		<button class="btn" data-ng-click="orderCtrl.deleteOrder(order.id)">DELETE</button>
+		<button class="btn" data-ng-click="orderManageCtrl.deleteOrder(order.id)">DELETE</button>
 	</div>
 </div>
 </div>
-

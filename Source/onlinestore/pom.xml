@@ -121,7 +121,14 @@
 		<artifactId>jasperreports</artifactId>
 		<version>6.1.1</version>
 	</dependency>
-
+	
+	<!-- JAVA MAIL API -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>javax.mail-api</artifactId>
+		<version>1.5.1</version>
+	</dependency>
+	
     
     
   </dependencies>

@@ -28,7 +28,11 @@ angular
 
 
         vm.addProductIntoCart = function(productId) {
-        	CartService.addProductIntoCart(productId);
+        	CartService.addProductIntoCart(productId).then(function(data) {
+        		if (data.data.status === 201) {
+        			alert("Added to cart");	
+        		}
+        	});
         };
 
         // var obj = {};
@@ -64,6 +68,54 @@ angular
 	        		$scope.productQueryParams.push({
 	        			'color' : value
 	        		});
+	        	}
+	        });
+
+	        angular.forEach(vm.prices, function(value, key) {
+	        	if (key === 'price1') {
+	        		if (value != false) {
+	        			$scope.productQueryParams.push({
+	        				'between_price': '0,100'
+	        			});
+	        		}
+	        	}
+	        	else if (key === 'price2') {
+	        		if (value != false) {
+	        			$scope.productQueryParams.push({
+	        				'between_price': '100,200'
+	        			});
+	        		}
+	        	}
+	        	else if (key === 'price3') {
+	        		if (value != false) {
+	        			
+	        			$scope.productQueryParams.push({
+	        				'between_price': '200,300'
+	        			});
+	        		}	
+	        	}
+	        	else if (key === 'price4') {
+	        		if (value != false) {
+	        			
+	        			$scope.productQueryParams.push({
+	        				'between_price': '300,400'
+	        			});
+	        		}
+	        	}
+	        	else if (key === 'price5') {
+	        		if (value != false) {
+	        			$scope.productQueryParams.push({
+	        				'between_price': '400,500'
+	        			});
+	        		}
+	        	}
+	        	else if (key === 'price6') {
+	        		if (value != false) {
+	        			
+	        			$scope.productQueryParams.push({
+	        				'between_price': '500,600'
+	        			});
+	        		}
 	        	}
 	        });
 

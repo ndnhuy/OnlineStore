@@ -5,10 +5,13 @@ angular
 	.factory('AccountService', function($http, $log, $cookies, config, User) {
 		var data = {
 			'getAccount': getAccount,
-			'register': register
+			'register': register,
+			'logout': logout
 		};
 
 		function getAccount() {
+
+			$log.info("Get account");
 			return $http({
 				'url': config.url + 'account',
 				'method': 'GET',
@@ -19,12 +22,13 @@ angular
 			.success(function(data) {
 				$log.info("Get my account " + JSON.stringify(data));
 				User.username = data.data.username;
+				User.role = data.data.role;
 			})
 			.catch(dataServiceError);
 		}
 
 		function register(registerUser) {
-			$http({
+			return $http({
 				'url': config.url + 'account/register',
 				'method': 'POST',
 				'headers': {
@@ -39,10 +43,15 @@ angular
 			.catch(dataServiceError);
 		}
 
+		function logout() {
+			$log.info(User.username + " logout");
+			$cookies.remove('access-token');
+		}
+
 		function dataServiceError(errorResponse) {
 	        $log.error('Failed for AccountService');
 	        $log.error(errorResponse);
-	        alert("You must login");
+	        alert(errorResponse.data.developerMessage);
 	        return errorResponse;
 	    }
 

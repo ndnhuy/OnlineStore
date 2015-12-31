@@ -26,7 +26,8 @@ import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
 public class Customer implements Serializable {
 	
 	@Id
-	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+	@SequenceGenerator(name="seq", sequenceName="customer_id_seq", allocationSize=1)
 	private Integer id;
 	
 	@Column(name="username")

@@ -2,11 +2,11 @@
 
 angular
     .module('app.core')
-    .controller('OrderController', function($window, $scope, $location, $log, OrderService, orders, user) {
+    .controller('OrderManageController', function($window, $scope, $location, $log, OrderService, orders, customer) {
         var vm = this;
 
         vm.orders = orders.data.data;
-        vm.user = user.data.data;
+        vm.customer = customer.data.data;
         vm.deleteOrder = function(id) {
             OrderService.deleteOrder(id).then(function(data) {
                 if (data.data.status === 200) {

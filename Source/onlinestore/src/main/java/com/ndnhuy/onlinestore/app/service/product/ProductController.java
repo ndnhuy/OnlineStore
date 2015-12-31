@@ -1,6 +1,8 @@
 package com.ndnhuy.onlinestore.app.service.product;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,12 +34,30 @@ public class ProductController {
 		
 		Collection<ProductDto> dtoProducts = productService.filter(request);
 		
+		List<List<ProductDto>> showProducts = new ArrayList<List<ProductDto>>();
+		
+		
 		logger.info("Products: ");
+		
+		int i = 0;
+		List<ProductDto> chunk = new ArrayList<ProductDto>();
 		for (ProductDto dto : dtoProducts) {
 			logger.info("Id: " + dto.getId() + ", name: " + dto.getName());
+			chunk.add(dto);
+			i++;
+			if (i == 3) {
+				showProducts.add(chunk);
+				chunk = new ArrayList<ProductDto>();
+				i = 0;
+			}
 		}
 		
-		return new RestSuccess(HttpStatus.OK.value(), dtoProducts);
+		if (dtoProducts.size() % 3 != 0) {
+			showProducts.add(chunk);
+		}
+		
+		
+		return new RestSuccess(HttpStatus.OK.value(), showProducts);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

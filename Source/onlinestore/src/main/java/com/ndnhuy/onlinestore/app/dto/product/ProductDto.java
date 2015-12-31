@@ -23,6 +23,9 @@ public class ProductDto implements Serializable {
 	@Mapping("color")
 	String color;
 	
+	@Mapping("imagePath")
+	String imagePath;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -58,6 +61,12 @@ public class ProductDto implements Serializable {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	

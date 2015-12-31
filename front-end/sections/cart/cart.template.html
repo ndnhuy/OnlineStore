@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+  
 
 </head>
 
@@ -12,7 +12,7 @@
                     <tr>
                         <th style="width:50%">Product</th>
                         <th style="width:10%">Price</th>
-                        <th style="width:8%">Quantity</th>
+                        <th style="width:10%">Quantity</th>
                         <th style="width:22%" class="text-center">Subtotal</th>
                         <th style="width:10%"></th>
                     </tr>
@@ -21,19 +21,20 @@
 					 <tr data-ng-repeat="product in cartCtrl.products">
                         <td>
                             <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="http://ecx.images-amazon.com/images/I/418medYDG9L._AC_SY220_.jpg" alt="..." class="img-responsive"/></div>
+                                <div class="col-sm-2 hidden-xs"><img src="{{product.imagePath}}" alt="..." class="img-responsive"/></div>
                                 <div class="col-sm-10">
                                     <h4 class="nomargin">{{product.name}}</h4>
-                                    <p><b>Color:</b>  Black </p>
-                                    <p><b>Screen Size:</b> 7.5 </p>
-                                    <p><b>Manufacturer:</b>  SONY </p>
+                                    <p><b>Color:</b>  {{product.color}} </p>
+                                    <p><b>Brand:</b>  {{product.brandName}} </p>
                                    
                                 </div>
                             </div>
                         </td>
                         <td>${{product.price}}</td>
                          <td data-th="Quantity">
-                            <input type="number" class="form-control text-center" value="{{product.quantity}}">
+                                
+                                
+                            <input min="1" max="10" data-ng-click="cartCtrl.updateQuantityOfProduct(product.quantity, product.id)" type="number" class="form-control text-center" data-ng-model="product.quantity" value="{{product.quantity}}"> 
                          </td>
                         <td class="text-center">${{product.subtotal}}</td>
 

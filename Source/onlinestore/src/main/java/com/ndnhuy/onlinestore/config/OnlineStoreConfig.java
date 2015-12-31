@@ -12,10 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.filter.RequestContextFilter;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.ndnhuy.onlinestore.commonutils.ApplicationContextProvider;
 import com.ndnhuy.onlinestore.commonutils.CurrentUser;
@@ -50,6 +52,7 @@ public class OnlineStoreConfig {
       return messageBundle;
     }
     
+    
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -64,6 +67,9 @@ public class OnlineStoreConfig {
     public Session getSession(SessionFactory factory) {
     	return factory.getCurrentSession();
     }
+    
+    
+   
     
 //    @Bean
 //    public DataSource dataSource() {

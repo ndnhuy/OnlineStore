@@ -19,6 +19,7 @@ public class CustomerDto extends BasicCustomerDto implements Serializable {
 	@Mapping("password")
 	private String password;
 	
+	
 //	@Mapping("purchases")
 //	private Collection<PurchaseDto> purchases;
 	
@@ -41,6 +42,7 @@ public class CustomerDto extends BasicCustomerDto implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	
 	
 	

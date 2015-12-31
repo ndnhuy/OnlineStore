@@ -2,7 +2,7 @@
 
 angular
     .module('app.core')
-    .controller('RegisterController', function($scope, $log, $cookies, AccountService) {
+    .controller('RegisterController', function($window, $scope, $log, $cookies, AccountService) {
         var vm = this;
 
         vm.user = {
@@ -13,7 +13,11 @@ angular
         	'city': null
         };
     	vm.register = function() {
-    		AccountService.register(vm.user);
+    		AccountService.register(vm.user).then(function(data) {
+    			if (data.data.status == 201) {
+    				$window.location.href = '#/login';
+    			}
+    		});
     	};
     });
 

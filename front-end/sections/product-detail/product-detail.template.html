@@ -114,30 +114,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="cont span_2_of_3">
               <div class="labout span_1_of_a1">
                 <!-- start product_slider -->
-                     <img src="http://ecx.images-amazon.com/images/I/418medYDG9L._AC_SY220_.jpg" alt="">
+                     <img src="{{productDetailCtrl.product.imagePath}}" alt="">
                     
                     
             <!-- end product_slider -->
             </div>
             <div class="cont1 span_2_of_a1">
-                <h3 class="m_3">Lorem ipsum dolor sit amet</h3>
+                <h3 class="m_3">{{productDetailCtrl.product.name}}</h3>
                 
                 <div class="price_single">
-                              <span class="reducedfrom">$66.00</span>
-                              <span class="actual">$12.00</span><a href="#">click for offer</a>
+                              <!-- <span class="reducedfrom">$66.00</span> -->
+                              <span class="actual">${{productDetailCtrl.product.price}}</span>
                             </div>
-                <ul class="options">
-                    <h4 class="m_9">Select a Size</h4>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <div class="clear"></div>
-                </ul>
+               
                 <div class="btn_form">
-                   <form>
-                     <input type="submit" value="buy now" title="">
-                  </form>
+                   
+                     <input data-ng-click="productDetailCtrl.addToCart()" type="submit" value="Add To Cart" title="">
+  
                 </div>
                 <ul class="add-to-links">
                    <li><img src="assets/images/wish.png" alt=""/><a href="#">Add to wishlist</a></li>

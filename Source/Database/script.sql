@@ -98,6 +98,7 @@ INSERT INTO BRAND (NAME) VALUES ('Apple');
 INSERT INTO BRAND (NAME) VALUES ('LG');
 INSERT INTO BRAND (NAME) VALUES ('Sony');
 INSERT INTO BRAND (NAME) VALUES ('Nexus');
+INSERT INTO BRAND (NAME) VALUES ('Samsung');
 
 DROP TABLE IF EXISTS PRODUCT CASCADE;
 CREATE TABLE PRODUCT (
@@ -106,11 +107,30 @@ CREATE TABLE PRODUCT (
 	PRICE NUMERIC CHECK (PRICE > 0),
 	OPERATING_SYSTEM_ID INT REFERENCES OPERATING_SYSTEM(ID),
 	BRAND_ID INT REFERENCES BRAND(ID),
-	COLOR TEXT
+	COLOR TEXT,
+	IMAGE_PATH TEXT
 );
 
-INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR) VALUES ('Iphone 5s', 5.5, 2, 1, 'black');
-INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR) VALUES ('Nexus 7', 15.5, 1, 4, 'white');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Samsung - Galaxy S6 4G with 32GB ', 449, 1, 5, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/4667/4667100_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Samsung - Galaxy S6 with 32GB', 149, 1, 5, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/4372/4372036_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Samsung - Galaxy S6 4G LTE', 199, 1, 5, 'white', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/4412/4412012_sa.jpg;canvasHeight=250;canvasWidth=200');
+
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Apple - iPhone 6 Plus 16GB', 199, 2, 1, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/7642/7642051_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Apple - iPhone 6s 128GB', 399, 2, 1, 'white', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/7640/7640099_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('Apple - iPhone 6 Plus 16GB - Gold ', 21.67, 2, 1, 'white', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/7640/7640099_sa.jpg;canvasHeight=250;canvasWidth=200');
+
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('LG - G4 Cell Phone - Deep Blue', 198.99, 1, 2, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/7873/7873212_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('LG - G4 4G with 32GB', 198.99, 1, 2, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/7873/7873212_sa.jpg;canvasHeight=250;canvasWidth=200');
+INSERT INTO PRODUCT (NAME, PRICE, OPERATING_SYSTEM_ID, BRAND_ID, COLOR, IMAGE_PATH) 
+		VALUES ('LG - V10 4G with 64GB', 149, 1, 2, 'black', 'http://pisces.bbystatic.com/image2/BestBuy_US/images/products/4634/4634500_sa.jpg;canvasHeight=250;canvasWidth=200');
 
 
 DROP TABLE IF EXISTS PURCHASE_PRODUCT;
@@ -132,4 +152,3 @@ CREATE TABLE PRODUCT_IMAGE (
 	ID SERIAL PRIMARY KEY,
 	FILE_PATH TEXT
 );
-

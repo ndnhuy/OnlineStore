@@ -13,6 +13,7 @@ import com.ndnhuy.onlinestore.commonutils.ConstPurchaseStatus;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.domainservice.product.ProductService;
 import com.ndnhuy.onlinestore.domain.entity.purchase.Order;
+import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 
 @Service
 public class OrderServiceImpl extends GenericServiceImpl<Order, OrderDto, Integer> implements OrderService {
@@ -29,14 +30,18 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, OrderDto, Intege
 		
 		List<OrderDto> orders = new ArrayList<OrderDto>();
 		for (PurchaseDto p : purchaseDtos) {
-			OrderDto dto = findOne(p.getId());
-			dto.setProducts(p.getProducts());
-			for (ProductDtoPurchase product : dto.getProducts()) {
-				productService.addExtraInfoInto(product, p.getId());
+			OrderDto dto = null;
+			try {
+				dto = findOne(p.getId());
+				dto.setProducts(p.getProducts());
+				for (ProductDtoPurchase product : dto.getProducts()) {
+					productService.addExtraInfoInto(product, p.getId());
+				}
+				
+				orders.add(dto);
+			} catch(EntityNotFoundException ex) {
+				
 			}
-			
-			orders.add(dto);
-			
 		}
 		
 		

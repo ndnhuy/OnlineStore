@@ -2,12 +2,13 @@
 
 angular
 	.module('app.services')
-	.factory('CartService', function($http, $log, config, $cookies) {
+	.factory('CartService', function($window, $http, $log, config, $cookies) {
 		var data = {
 			'getProductsInCart': getProductsInCart,
 			'removeProductFromCart': removeProductFromCart,
 			'addProductIntoCart': addProductIntoCart,
-			'checkout': checkout
+			'checkout': checkout,
+			'updateQuantityOfProduct': updateQuantityOfProduct
 		};
 
 		function getProductsInCart() {
@@ -26,7 +27,7 @@ angular
 		}
 
 		function addProductIntoCart(productId) {
-			$http({
+			return $http({
 				'url': config.url + 'cart?insert_product_id=' + productId,
 				'method': 'POST',
 				'headers': {
@@ -58,7 +59,7 @@ angular
 
 		function updateQuantityOfProduct(quantity, productId) {
 			return $http({
-				'url': config.url + 'cart/products/1?quantity=' + quantity,
+				'url': config.url + 'cart/products/' + productId + '?quantity=' + quantity,
 				'method': 'PATCH',
 				'headers': {
 					'Authorization': $cookies.get('access-token')
@@ -88,7 +89,9 @@ angular
 		function dataServiceError(errorResponse) {
 	        $log.error('Failed for CartService');
 	        $log.error(errorResponse);
-	        alert(errorResponse.data.message);
+	        if (errorResponse.data.status == 500) {
+	        	$window.location.href = '#/login';
+	        }
 	        return errorResponse;
 	    }
 

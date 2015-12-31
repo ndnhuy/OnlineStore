@@ -30,6 +30,9 @@ public class BasicCustomerDto implements Serializable {
 	@Mapping("customerDetail.address.city")
 	@Size(min = 0, max = 30, message = "'city' " + "{javax.validation.constraints.Size.message}")
 	private String city;
+	
+	@Mapping("userRole.roleName")
+	private String role;
 
 	public String getUsername() {
 		return username;
@@ -63,5 +66,10 @@ public class BasicCustomerDto implements Serializable {
 		this.city = city;
 	}
 	
-	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

@@ -1,0 +1,28 @@
+<head><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></head>
+
+<div class="container">
+	<table class="table">
+	    <thead>
+	      <tr>
+	        <th><b>Username</b></th>
+	        <th><b>Email</b></th>
+	        <th><b>Street</b></th>
+	        <th><b>City</b></th>
+	        <td></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr data-ng-repeat="customer in customerCtrl.customers">
+	      	<td>{{customer.id}}</td>
+	        <td>{{customer.username}}</td>
+	        <td>{{customer.email}}</td>
+	        <td>{{customer.role}}</td>
+	        <td><a href="#/customers/{{customer.id}}/orders">View Order</a></td>
+	        <td></td>
+	      </tr>
+	 
+	    </tbody>
+	  </table>
+
+</div>
+

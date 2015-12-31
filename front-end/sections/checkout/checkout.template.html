@@ -61,8 +61,7 @@
 </head>
 <body>
   
-   
-       <div class="register_account">
+       <div class="register_account container">
           	<div class="wrap">
     	      <h4 class="title">Shipping Address</h4>
     		  <form>
@@ -81,31 +80,35 @@
     	  </div> 
         </div>
 
-     <table class="table table-bordered table-hover">
-		<thead>
-			<tr>
-				<td>Product Name</td>
-				<td>Quantity</td>
-				<td>Unit Price</td>
-				<td>Total</td>
-			</tr>
-		</thead>
-		<tbody data-ng-repeat="product in checkoutCtrl.products">
-	      <tr>
-	        <td>{{product.name}}</td>
-	        <td>{{product.quantity}}</td>
-	        <td>${{product.price}}</td>
-	        <td>${{product.subtotal}}</td>
-	      </tr>
+        
+        <div class="container">
+        	<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<td>Product Name</td>
+						<td>Quantity</td>
+						<td>Unit Price</td>
+						<td>Total</td>
+					</tr>
+				</thead>
+				<tbody data-ng-repeat="product in checkoutCtrl.products">
+			      <tr>
+			        <td>{{product.name}}</td>
+			        <td>{{product.quantity}}</td>
+			        <td>${{product.price}}</td>
+			        <td>${{product.subtotal}}</td>
+			      </tr>
 
-    	</tbody>
-    	<tfoot>
-    		<tr>
-    			<td colspan="3" class="text-right">Total</td>
-    			<td>${{checkoutCtrl.total}}</td>
-    		</tr>
-    	</tfoot>
-	</table>
+		    	</tbody>
+		    	<tfoot>
+		    		<tr>
+		    			<td colspan="3" class="text-right">Total</td>
+		    			<td>${{checkoutCtrl.total}}</td>
+		    		</tr>
+		    	</tfoot>
+			</table>
+        </div>
+     
 </body>
 </html>
 

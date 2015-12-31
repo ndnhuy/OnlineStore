@@ -54,6 +54,9 @@ public class Product {
 	@Column(name="color")
 	private String color;
 	
+	@Column(name="image_path")
+	private String imagePath;
+	
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="products")
 	private Collection<Purchase> purchases = new ArrayList<Purchase>();
 	
@@ -123,6 +126,14 @@ public class Product {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	

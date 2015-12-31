@@ -8,7 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
@@ -55,25 +62,33 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	    ApplicationContext ctx = SpringApplication.run(SpringApplicationRunner.class, args);
 	    
 	    
+	    
+	 
+	    
+	    
+	    
+	    
+	    
+	    
 //	    File file = new File("D:\\JREmp1.jrxml");
 //	    
 //	    System.out.println(file);
 	    
-	    DataSource ds = (DataSource) ctx.getBean("dataSource");
-	    System.out.println("DataSource is " + ds);
-	    Connection conn = ds.getConnection();
-	    
-	    HashMap<String,Object> hmParams=new HashMap<String,Object>();
-	    
-        hmParams.put("noy", new Integer(5000));
-
-        hmParams.put("Title", "Employees working more than "+ 5000 + " Years");
-        
-        
-              
-        JasperReport jasperReport = getCompiledFile("JREmp1"); 
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hmParams, conn);
-        generateReportHtml(jasperPrint);
+//	    DataSource ds = (DataSource) ctx.getBean("dataSource");
+//	    System.out.println("DataSource is " + ds);
+//	    Connection conn = ds.getConnection();
+//	    
+//	    HashMap<String,Object> hmParams=new HashMap<String,Object>();
+//	    
+//        hmParams.put("noy", new Integer(5000));
+//
+//        hmParams.put("Title", "Employees working more than "+ 5000 + " Years");
+//        
+//        
+//              
+//        JasperReport jasperReport = getCompiledFile("JREmp1"); 
+//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hmParams, conn);
+//        generateReportHtml(jasperPrint);
 	 }
 	 
 	 private static JasperReport getCompiledFile(String fileName) throws JRException {

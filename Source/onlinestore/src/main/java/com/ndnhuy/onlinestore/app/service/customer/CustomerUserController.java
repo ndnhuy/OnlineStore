@@ -35,7 +35,7 @@ public class CustomerUserController {
 	private CurrentUser currentUser;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	@Secured(Constant.ROLE_USER)
+	@Secured({Constant.ROLE_USER, Constant.ROLE_ADMIN})
 	public RestSuccess getAccount() {
 		logger.info("Get account of user " + currentUser.getUsername());
 		

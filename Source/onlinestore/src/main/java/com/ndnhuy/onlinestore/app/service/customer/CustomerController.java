@@ -18,6 +18,7 @@ import com.ndnhuy.onlinestore.app.dto.common.RestSuccess;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
+import com.ndnhuy.onlinestore.domain.domainservice.purchase.OrderService;
 import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
 
 @RestController
@@ -29,7 +30,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public RestSuccess getCustomers() {
@@ -102,5 +104,10 @@ public class CustomerController {
 		logger.info("Partially update customer " + id + " s: " + ToStringBuilder.reflectionToString(patch));
 		
 		return customerService.updateChanges(id, patch);
+	}
+	
+	@RequestMapping(value="/{customerId}/orders", method=RequestMethod.GET)
+	public RestSuccess getOrders(@PathVariable("customerId") Integer customerId) {
+		return new RestSuccess(HttpStatus.OK.value(), orderService.findOrdersOfCustomer(customerId), null);
 	}
 }

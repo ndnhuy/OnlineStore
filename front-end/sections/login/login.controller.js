@@ -2,7 +2,7 @@
 
 angular
     .module('app.core')
-    .controller('LoginController', function($scope, $log, AuthService, $cookies) {
+    .controller('LoginController', function($window, $scope, $log, $cookies, AuthService, AccountService) {
         var vm = this;
 
         vm.login = function() {
@@ -11,9 +11,13 @@ angular
                 if (response.status == 200) {
                     $log.info("Login with username " + vm.username);
                     $cookies.put('access-token', 'Basic ' + response.data.token);
+
+                    AccountService.getAccount();
+
+                    $window.location.href = '#';
                 }
                 else if (response.status == 401) {
-
+                    alert("LOGIN FAIL!!");
                 }
             });
         }
