@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report8" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="642b3b46-f21e-440c-81e6-0a650950d001">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="fromDate" class="java.util.Date"/>
+	<parameter name="toDate" class="java.util.Date"/>
+
+	<queryString>
+		<![CDATA[select customer.username, sum_table.sum,
+	purchase_order.purchase_id AS order_id, purchase_order.total, purchase_order.order_date
+from customer, (select A.customer_id, SUM(purchase_order.total) from
+		(select customer.id AS customer_id, customer.username AS username, purchase.id AS purchaseId from customer
+		left join purchase
+		on customer.id = purchase.customer_id
+		where customer.username <> 'admin'
+		order by customer.username) as A
+		left join purchase_order
+		on A.purchaseId = purchase_order.purchase_id
+		group by A.customer_id) AS sum_table,
+		purchase,
+		purchase_order
+where customer.id = sum_table.customer_id
+	AND purchase.customer_id = customer.id
+	AND purchase_order.purchase_id = purchase.id
+	AND purchase_order.order_date >= $P{fromDate}
+	AND purchase_order.order_date >= $P{toDate};]]>
+	</queryString>
+	<field name="username" class="java.lang.String"/>
+	<field name="sum" class="java.math.BigDecimal"/>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="order_date" class="java.sql.Date"/>
+	<group name="username">
+		<groupExpression><![CDATA[$F{username}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="180" y="13" width="138" height="24" forecolor="#000000" uuid="a46d61a4-d67d-4927-9b5e-639117524a48"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="97" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="2854ff74-8fa7-42d3-9ef5-157a68b976d6"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="30">
+				<frame>
+					<reportElement mode="Opaque" x="405" y="0" width="150" height="30" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="cec9272a-05bf-49c3-b9e3-7071577a77cb"/>
+					<textField>
+						<reportElement style="Detail" x="21" y="0" width="129" height="30" uuid="0b4f0d94-0210-4a27-b072-36a63b2ed724"/>
+						<textElement verticalAlignment="Middle">
+							<font size="18" isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<staticText>
+					<reportElement style="Column header" x="346" y="0" width="59" height="30" forecolor="#666666" uuid="cb81aef7-47c1-4f92-a39b-43cfbe480899"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="total">
+		<groupExpression><![CDATA[$F{total}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<staticText>
+					<reportElement style="Column header" x="96" y="14" width="59" height="15" forecolor="#666666" uuid="4d3109f1-a2a3-429a-b989-e77d4e7679d8"/>
+					<text><![CDATA[Order Id]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="180" y="14" width="59" height="15" forecolor="#666666" uuid="98f67ee7-6f5c-45c8-be84-f965edd2b9a8"/>
+					<text><![CDATA[Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="487" y="14" width="59" height="15" forecolor="#666666" uuid="0251c058-37c3-4a96-bf42-4f9627569408"/>
+					<text><![CDATA[Subtotal]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band height="822" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="555" height="115" uuid="5d8b5a17-c7cd-4df9-bbe0-223a0f41fdac"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="54" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[BUYER REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="234" y="115" width="321" height="37" uuid="ee9705ce-2829-41f4-aedb-d969f2262ca0"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[ONLINE STORE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="97" y="0" width="458" height="20" backcolor="#666666" uuid="3f6682fb-2af6-42b3-8f5f-9101df6b3455"/>
+				<staticText>
+					<reportElement style="Column header" x="83" y="0" width="36" height="20" uuid="13aff023-2cb6-48ab-a347-cdab4df7f835"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+					<text><![CDATA[NAME]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement x="97" y="1" width="458" height="15" uuid="5be59444-af48-4959-885f-19c23e626204"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="69" height="15" uuid="9414f063-47de-418f-bfe7-7c87f9fef9a7"/>
+					<textFieldExpression><![CDATA[$F{order_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="83" y="1" width="91" height="14" uuid="18caae3e-5d27-41e3-a02f-ab7bd24a4945"/>
+					<textFieldExpression><![CDATA[$F{order_date}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="97" y="16" width="458" height="1" uuid="b9aaf799-4389-4aa0-b6df-12aecdc8ce6f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="SubTitle" x="487" y="0" width="55" height="16" forecolor="#000000" uuid="937a31a5-ed3a-439f-b69d-0b550b9d075d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="100" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="424" y="0" width="131" height="20" forecolor="#000000" uuid="25d28395-e123-483b-b9e8-1d0bb11c6187"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="96" y="0" width="267" height="20" forecolor="#000000" uuid="4fe3cc5b-252b-4109-8927-8e9e1951b869"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Silhouette Title Report]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
