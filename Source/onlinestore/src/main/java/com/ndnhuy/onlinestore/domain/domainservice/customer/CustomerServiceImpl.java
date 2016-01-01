@@ -20,12 +20,14 @@ import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
 import com.ndnhuy.onlinestore.domain.entity.customer.Address;
 import com.ndnhuy.onlinestore.domain.entity.customer.Customer;
 import com.ndnhuy.onlinestore.domain.entity.customer.CustomerDetail;
+import com.ndnhuy.onlinestore.domain.entity.customer.PasswordResetToken;
 import com.ndnhuy.onlinestore.domain.entity.customer.UserRole;
 import com.ndnhuy.onlinestore.domain.entity.customer.VerificationToken;
 import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
 import com.ndnhuy.onlinestore.domain.exception.AppException;
 import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 import com.ndnhuy.onlinestore.repository.CustomerRepository;
+import com.ndnhuy.onlinestore.repository.PasswordResetTokenRepository;
 import com.ndnhuy.onlinestore.repository.UserRoleRepository;
 import com.ndnhuy.onlinestore.repository.VerificationTokenRepository;
 
@@ -43,6 +45,9 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 	
 	@Autowired
 	private VerificationTokenRepository verificationTokenRepo;
+	
+	@Autowired
+	private PasswordResetTokenRepository passwordResetTokenRepo;
 	
 	@Override
 	public CustomerDto add(CustomerDto dto) {
@@ -178,5 +183,35 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		
 		return mapper.map(customer, CustomerDto.class);
 	}
+
+	@Override
+	public void createPasswordResetToken(String email, String token) {
+		Customer customer = customerRepository.findByEmail(email);
+		if (customer == null) {
+			throw new AppException(HttpStatus.NOT_FOUND.value(), "Your email does not exist. Fail to reset password", "The email " + email + " does not exist");
+		}
+		
+		passwordResetTokenRepo.save(new PasswordResetToken(token, null, customer));
+	}
+
+	@Override
+	public CustomerDto confirmPasswordReset(String token, String newPassword) {
+		PasswordResetToken passwordResetToken = passwordResetTokenRepo.findByToken(token);
+		if (passwordResetToken == null) {
+			//TODO create confirmPasswordReset fail exception
+			throw new AppException(HttpStatus.UNAUTHORIZED.value(), "You cannot reset password", "The password reset token is invalid");
+		}
+		
+		Customer customer = passwordResetToken.getCustomer();
+		if (customer == null) {
+			throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Cannot retrieve customer from token " + token, "Cannot retrieve customer from token " + token);
+		}
+		
+		customer.setPassword(newPassword);
+		
+		return mapper.map(customer, CustomerDto.class);
+	}
+	
+	
 
 }

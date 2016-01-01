@@ -92,6 +92,28 @@ function config($routeProvider) {
 				}
 			}
 		})
+		.when('/registerConfirm', {
+			templateUrl: 'sections/registration-confirm/registration-confirm.template.html',
+			controller: 'RegisterController as registerCtrl'
+		})
+		.when('/resetPassword', {
+			templateUrl: 'sections/password-reset/password-reset.template.html',
+			controller: 'AccountController as accountCtrl',
+			resolve: {
+				user : function(AccountService) {
+					return null;
+				}
+			}
+		})
+		.when('/changePassword', {
+			templateUrl: 'sections/password-reset/enter-new-password.template.html',
+			controller: 'AccountController as accountCtrl',
+			resolve: {
+				user : function(AccountService) {
+					return null;
+				}
+			}
+		})
 		.otherwise({
             redirectTo: '/'
         });

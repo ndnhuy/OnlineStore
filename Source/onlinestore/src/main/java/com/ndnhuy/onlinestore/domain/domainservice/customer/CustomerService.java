@@ -19,4 +19,6 @@ public interface CustomerService extends GenericService<Customer, CustomerDto, I
 	void createVerificationToken(Integer customerId, String token);
 	CustomerDto confirmRegistration(String token);
 	
+	void createPasswordResetToken(String email, String token);
+	CustomerDto confirmPasswordReset(String token, String newPassword);
 }

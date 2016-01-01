@@ -12,12 +12,23 @@ angular
         	'street': null,
         	'city': null
         };
+
+        vm.confirmSucceed = false;
+
     	vm.register = function() {
     		AccountService.register(vm.user).then(function(data) {
     			if (data.data.status == 201) {
-    				$window.location.href = '#/login';
+    				$window.location.href = '#/registerConfirm';
     			}
     		});
     	};
+
+        vm.confirmRegister = function() {
+            AccountService.confirmRegistration(vm.confirmToken).then(function(data) {
+                if (data.data.status === 200) {
+                    vm.confirmSucceed = true;
+                }
+            });
+        }
     });
 

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
-import javax.transaction.Transactional;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
@@ -15,6 +14,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -68,21 +68,39 @@ public class CustomerUserController {
 		// Send email with token
 		
 		String message = "Confirm Registration";
-		String confirmLink = ServletUriComponentsBuilder.fromCurrentContextPath()
-				.path("/registryConfirm")
-				.queryParam("token", token)
-				.toUriString();
+//		String confirmLink = ServletUriComponentsBuilder.fromCurrentContextPath()
+//				.path("/registryConfirm")
+//				.queryParam("token", token)
+//				.toUriString();
 		
 		SendMail.sendMessage(GmailService.getGmailService(), "me",
 				SendMail.createEmail(customerDto.getEmail(), 
 						"ndnhuy2504@gmail.com", 
 						"Registration Confirmation", 
-						message + " " + confirmLink));
+						message + " " + token));
 		 
 		
 		return new RestSuccess(HttpStatus.CREATED.value(), customerDto, 
 									"You can view the account info at " 
 											+ ServletUriComponentsBuilder.fromCurrentContextPath().path("/account").toUriString());
 		
+	}
+	
+	@RequestMapping(value="/resetPassword", method=RequestMethod.POST)
+	public RestSuccess resetPassword(@RequestParam("email") String email) throws MessagingException, IOException {
+		String token = UUID.randomUUID().toString();
+		
+		customerService.createPasswordResetToken(email, token);
+		
+		// Send email with token to given email
+		String message = "Password Reset Token";
+		
+		SendMail.sendMessage(GmailService.getGmailService(), "me",
+				SendMail.createEmail(email, 
+						"ndnhuy2504@gmail.com", 
+						"Password Reset Confirmation", 
+						message + " " + token));
+		
+		return new RestSuccess(HttpStatus.OK.value(), null, "The password reset token has been sent to your email " + email);
 	}
 }

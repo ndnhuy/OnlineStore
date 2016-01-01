@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.app.service.registration;
+package com.ndnhuy.onlinestore.app.service.account;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -63,25 +63,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
   
-   
+        
        <div class="register_account">
           	<div class="wrap">
-    	      <h4 class="title">Create an Account</h4>
-    		   <form>
+                <h3>The token has been sent to your email. Enter the token to completed the registration.</h3>
+    	      <h4 class="title">Registration Confirm</h4>
+
+    		   <form data-ng-if="registerCtrl.confirmSucceed == false">
     			 <div class="col_1_of_2 span_1_of_2">
-		   			 <div><input data-ng-model="registerCtrl.user.username" type="text" value="Name" placeholder="username"></div>
-		    			<div><input data-ng-model="registerCtrl.user.email" type="text" value="E-Mail" placeholder="email"></div>
-		    			<div><input type="password" value="password" placeholder="password" data-ng-model="registerCtrl.user.password"></div>
+		   			 <div><input data-ng-model="registerCtrl.confirmToken" type="text" value="token" placeholder="Enter your token here"></div>
+		    			
 		    	 </div>
-		    	  <div class="col_1_of_2 span_1_of_2">	
-		    		<div><input data-ng-model="registerCtrl.user.street" type="text" value="Address" placeholder="street"></div>
-		    			        
-		         <div><input data-ng-model="registerCtrl.user.city" type="text" value="City" placeholder="city"></div>
-		          </div>
+		    	 
 		         
-		       <button class="grey" data-ng-click="registerCtrl.register()">Submit</button>
+		       <button class="grey" data-ng-click="registerCtrl.confirmRegister()">Submit</button>
 
 		    </form>
+            <h3 data-ng-if="registerCtrl.confirmSucceed == true">The registration is completed. Please visit at <a href="#/login">this</a> to login</h3>
     	  </div> 
         </div>
         

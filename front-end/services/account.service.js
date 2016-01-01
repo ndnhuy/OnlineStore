@@ -6,7 +6,10 @@ angular
 		var data = {
 			'getAccount': getAccount,
 			'register': register,
-			'logout': logout
+			'logout': logout,
+			'confirmRegistration': confirmRegistration,
+			'askToResetPassword': askToResetPassword,
+			'resetPassword': resetPassword
 		};
 
 		function getAccount() {
@@ -39,6 +42,39 @@ angular
 			})
 			.success(function(data) {
 				$log.info("Register account " + JSON.stringify(registerUser));
+			})
+			.catch(dataServiceError);
+		}
+
+		function confirmRegistration(token) {
+			return $http({
+				'url': config.url + 'registryConfirm?token=' + token,
+				'method': 'GET'
+			})
+			.success(function(data) {
+				$log.info("Confirm registration with token " + token);
+			})
+			.catch(dataServiceError);
+		}
+
+		function askToResetPassword(email) {
+			return $http({
+				'url': config.url + 'account/resetPassword?email=' + email,
+				'method': 'POST'
+			})
+			.success(function(data) {
+				$log.info("Ask to reset password of customer who has email " + email);
+			})
+			.catch(dataServiceError);
+		}
+
+		function resetPassword(token, newPassword) {
+			return $http({
+				'url': config.url + 'passwordResetConfirm?token=' + token + '&new_password=' + newPassword,
+				'method': 'POST'
+			})
+			.success(function(data) {
+				$log.info("Change password");
 			})
 			.catch(dataServiceError);
 		}
