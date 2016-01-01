@@ -6,7 +6,8 @@ angular
 		var data = {
 			'getOrders': getOrders,
 			'deleteOrder': deleteOrder,
-			'getOrdersOfCustomer': getOrdersOfCustomer
+			'getOrdersOfCustomer': getOrdersOfCustomer,
+			'updateStatus': updateStatus
 		};
 
 		function getOrders() {
@@ -33,6 +34,17 @@ angular
 			})
 			.success(function(data) {
 				$log.info("Get orders of customer id " + customerId + ": " + JSON.stringify(data));
+			})
+			.catch(dataServiceError);
+		}
+
+		function updateStatus(orderId, status) {
+			return $http({
+				'url': config.url + 'orders/' + orderId + '?/order_status=' + status,
+				'method': 'POST'
+			})
+			.success(function(data) {
+				
 			})
 			.catch(dataServiceError);
 		}

@@ -5,8 +5,54 @@
 
 <div class="container">
 	<h1>Orders</h1>
+
+
 <div class="order" data-ng-repeat="order in orderManageCtrl.orders">
-	<h2>#{{order.id}} - Status: {{order.orderStatus}}</h2>
+	<h2>#{{order.id}} - Status</h2>
+
+
+	<select data-ng-if="order.orderStatus == 'new'" >
+	  <option value="new" selected>NEW</option>
+	  <option value="hold">HOLD</option>
+	  <option value="shipped">SHIPPED</option>
+	  <option value="delivered">DELIVERED</option>
+	  <option value="closed">CLOSED</option>
+
+	</select>
+	<select data-ng-if="order.orderStatus == 'hold'">
+	  <option value="new">NEW</option>
+	  <option value="hold" selected>HOLD</option>
+	  <option value="shipped">SHIPPED</option>
+	  <option value="delivered">DELIVERED</option>
+	  <option value="closed">CLOSED</option>
+
+	</select>
+	<select data-ng-if="order.orderStatus == 'shipped'">
+	  <option value="new">NEW</option>
+	  <option value="hold">HOLD</option>
+	  <option value="shipped" selected>SHIPPED</option>
+	  <option value="delivered">DELIVERED</option>
+	  <option value="closed">CLOSED</option>
+
+	</select>
+	<select data-ng-if="order.orderStatus == 'delivered'">
+	  <option value="new">NEW</option>
+	  <option value="hold">HOLD</option>
+	  <option value="shipped">SHIPPED</option>
+	  <option value="delivered" selected>DELIVERED</option>
+	  <option value="closed">CLOSED</option>
+
+	</select>
+	<select data-ng-if="order.orderStatus == 'closed'">
+	  <option value="new">NEW</option>
+	  <option value="hold">HOLD</option>
+	  <option value="shipped">SHIPPED</option>
+	  <option value="delivered">DELIVERED</option>
+	  <option value="closed" selected>CLOSED</option>
+
+	</select>
+
+
 	<table class="table table-bordered table-hover">
 	<thead>
 		<tr>

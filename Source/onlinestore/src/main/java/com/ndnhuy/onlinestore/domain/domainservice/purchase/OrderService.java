@@ -8,4 +8,5 @@ import com.ndnhuy.onlinestore.domain.entity.purchase.Order;
 
 public interface OrderService extends GenericService<Order, OrderDto, Integer>{
 	List<OrderDto> findOrdersOfCustomer(Integer customerId);
+	void updateOrderStatus(Integer orderId, String orderStatus);
 }

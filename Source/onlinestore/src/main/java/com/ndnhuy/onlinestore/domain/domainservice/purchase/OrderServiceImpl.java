@@ -50,4 +50,13 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, OrderDto, Intege
 		return orders;
 	}
 
+	@Override
+	public void updateOrderStatus(Integer orderId, String orderStatus) {
+		Order order = repository.findOne(orderId);
+		order.setOrderStatus(orderStatus);
+		repository.save(order);
+	}
+
+	
+
 }

@@ -16,4 +16,8 @@ angular
                 }
             });
         }
+
+        vm.updateOrderStatus = function(orderId, newStatus) {
+            OrderService.updateStatus(orderId, newStatus);
+        }
     });
