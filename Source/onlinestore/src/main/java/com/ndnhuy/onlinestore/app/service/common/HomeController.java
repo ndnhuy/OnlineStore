@@ -47,28 +47,10 @@ public class HomeController {
 	private DataSource dataSource;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home(@RequestParam("from") String from, @RequestParam("to") String to, HttpServletResponse reponse) throws JRException, SQLException, IOException, ParseException {
+	public String home() {
 		
-		HashMap<String,Object> hmParams=new HashMap<String,Object>();
-    
-		DateFormat format = new SimpleDateFormat("MMddyy");
-		Date fromDate = format.parse(from);
-		Date toDate = format.parse(to);
-		hmParams.put("fromDate", fromDate);
-		hmParams.put("toDate", toDate);
-
 		
-      JasperReport jasperReport = JasperReporter.getCompiledFile("report8"); 
-      JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hmParams, dataSource.getConnection());
-      JasperReporter.generateReportHtml(jasperPrint, reponse, "report8");
-		
-		return null;
+		return "WELCOME TO ONLINE STORE SERVICE";
 	}
-	
-	@RequestMapping(value="/", method=RequestMethod.PATCH)
-	public Integer home2(@RequestBody Patch patch) {
 
-		
-		return 1;
-	}
 }

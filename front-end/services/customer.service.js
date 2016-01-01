@@ -5,7 +5,8 @@ angular
 	.factory('CustomerService', function($http, $cookies, $log, config) {
 		var data = {
 			'getCustomers': getCustomers,
-			'getCustomer': getCustomer
+			'getCustomer': getCustomer,
+			'getReport': getReport
 		};
 
 		function getCustomers() {
@@ -34,6 +35,16 @@ angular
 				$log.info("Get customer id " + customerId);
 			})
 			.catch(dataServiceError); 
+		}
+
+		function getReport(min) {
+			return $http({
+				'url': config.url + 'report/buyer?min=' + min,
+				'method': 'GET'
+			})
+			.success(function(data) {
+				
+			})
 		}
 
 		function dataServiceError(errorResponse) {

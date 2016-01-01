@@ -114,6 +114,10 @@ function config($routeProvider) {
 				}
 			}
 		})
+		.when('/report', {
+			templateUrl: 'sections/report/report.template.html',
+			controller: 'ReportController as reportCtrl'
+		})
 		.otherwise({
             redirectTo: '/'
         });

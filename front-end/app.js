@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('app', ['ngRoute', 'app.services', 'app.routes', 'app.config', 'app.core', 'ngCookies']);
+angular.module('app', ['ngRoute', 'app.services', 'app.routes', 'app.config', 'app.core', 'ngCookies', 'ngSanitize']);
