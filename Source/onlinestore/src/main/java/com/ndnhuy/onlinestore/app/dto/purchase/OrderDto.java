@@ -2,13 +2,18 @@ package com.ndnhuy.onlinestore.app.dto.purchase;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 import org.dozer.Mapping;
 
 import com.ndnhuy.onlinestore.app.dto.product.ProductDtoPurchase;
 
 public class OrderDto implements Serializable {
+	
+	public OrderDto() {
+		this.orderDate = new Date();
+	}
+	
 	@Mapping("id")
 	private Integer id;
 	
@@ -29,6 +34,9 @@ public class OrderDto implements Serializable {
 	
 	@Mapping("orderStatus")
 	private String orderStatus;
+	
+	@Mapping("orderDate")
+	private Date orderDate;
 	
 	private Collection<ProductDtoPurchase> products;
 

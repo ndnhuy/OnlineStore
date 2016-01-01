@@ -20,20 +20,20 @@ import net.sf.jasperreports.export.SimpleHtmlReportConfiguration;
 
 public class JasperReporter {
 	public static JasperReport getCompiledFile(String fileName) throws JRException {
-	    File reportFile = new File("D:\\JREmp1.jasper");
+	    File reportFile = new File("D:\\report\\" + fileName + ".jasper");
 	    // If compiled file is not found, then compile XML template
 	    if (!reportFile.exists()) {
-	               JasperCompileManager.compileReportToFile("D:\\JREmp1.jrxml", "D:\\JREmp1.jasper");
+	               JasperCompileManager.compileReportToFile("D:\\report\\" + fileName + ".jrxml", "D:\\report\\" + fileName + ".jasper");
 	        }
 	        JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
 	       return jasperReport;
 	 } 
 	 
-	public static void generateReportHtml(JasperPrint jasperPrint, HttpServletResponse response) throws JRException, IOException {
+	public static void generateReportHtml(JasperPrint jasperPrint, HttpServletResponse response, String fileName) throws JRException, IOException {
 		 
 		response.setHeader("Content-Type", "text/html;charset=utf-8");
 		
-		 File file = new File("D:\\JREmp1.html");
+		 File file = new File("D:\\report\\" + fileName + ".html");
 		 if (!file.exists()) {
 			 file.createNewFile();
 		 }

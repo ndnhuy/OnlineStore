@@ -1,11 +1,10 @@
 package com.ndnhuy.onlinestore.domain.entity.purchase;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +31,9 @@ public class Order {
 	
 	@Column(name="order_status")
 	private String orderStatus;
+	
+	@Column(name="order_date")
+	private Date orderDate;
 
 	public Integer getId() {
 		return id;
@@ -87,6 +89,14 @@ public class Order {
 
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 	
 	

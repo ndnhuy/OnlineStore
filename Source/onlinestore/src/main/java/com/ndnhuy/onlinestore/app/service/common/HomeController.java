@@ -2,6 +2,11 @@ package com.ndnhuy.onlinestore.app.service.common;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.persistence.EntityManager;
@@ -21,6 +26,7 @@ import org.springframework.sync.Patch;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ndnhuy.onlinestore.commonutils.JasperReporter;
 import com.ndnhuy.onlinestore.repository.CustomerRepository;
@@ -41,17 +47,20 @@ public class HomeController {
 	private DataSource dataSource;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home(HttpServletResponse reponse) throws JRException, SQLException, IOException {
+	public String home(@RequestParam("from") String from, @RequestParam("to") String to, HttpServletResponse reponse) throws JRException, SQLException, IOException, ParseException {
 		
 		HashMap<String,Object> hmParams=new HashMap<String,Object>();
     
-		hmParams.put("noy", new Integer(5000));
+		DateFormat format = new SimpleDateFormat("MMddyy");
+		Date fromDate = format.parse(from);
+		Date toDate = format.parse(to);
+		hmParams.put("fromDate", fromDate);
+		hmParams.put("toDate", toDate);
 
-	    hmParams.put("Title", "Employees working more than "+ 5000 + " Years");
 		
-      JasperReport jasperReport = JasperReporter.getCompiledFile("JREmp1"); 
+      JasperReport jasperReport = JasperReporter.getCompiledFile("report8"); 
       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hmParams, dataSource.getConnection());
-      JasperReporter.generateReportHtml(jasperPrint, reponse);
+      JasperReporter.generateReportHtml(jasperPrint, reponse, "report8");
 		
 		return null;
 	}

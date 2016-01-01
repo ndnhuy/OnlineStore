@@ -8,15 +8,15 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.ndnhuy.onlinestore.app.dto.customer.BasicCustomerDto;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
+import com.ndnhuy.onlinestore.commonutils.ConstPurchaseStatus;
 import com.ndnhuy.onlinestore.commonutils.Constant;
-import com.ndnhuy.onlinestore.commonutils.CurrentUser;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
+import com.ndnhuy.onlinestore.domain.domainservice.purchase.PurchaseService;
 import com.ndnhuy.onlinestore.domain.entity.customer.Address;
 import com.ndnhuy.onlinestore.domain.entity.customer.Customer;
 import com.ndnhuy.onlinestore.domain.entity.customer.CustomerDetail;
@@ -48,6 +48,9 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 	
 	@Autowired
 	private PasswordResetTokenRepository passwordResetTokenRepo;
+	
+	@Autowired
+	private PurchaseService purchaseService;
 	
 	@Override
 	public CustomerDto add(CustomerDto dto) {
@@ -103,6 +106,14 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		validator.checkIfFieldValueIsUniqueInRepo(dto, Customer.class);
 		
 		repository.saveAndFlush(customer);
+		
+		// Create new purchase as cart
+		PurchaseDto newPurchase = new PurchaseDto();
+		newPurchase.setCustomerId(customer.getId());
+		newPurchase.setStatusId(ConstPurchaseStatus.ORDERING.value());
+		
+		purchaseService.add(newPurchase);
+		
 		
 		
 		return mapper.map(customer, CustomerDto.class);
