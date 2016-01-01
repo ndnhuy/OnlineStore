@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.entity;
+package com.ndnhuy.onlinestore.domain.entity.customer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -7,7 +7,7 @@ import com.ndnhuy.onlinestore.app.dto.customer.BasicCustomerDto;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericService;
-import com.ndnhuy.onlinestore.domain.entity.Customer;
+import com.ndnhuy.onlinestore.domain.entity.customer.Customer;
 
 /**
  * @author Huy Nguyen
@@ -15,4 +15,8 @@ import com.ndnhuy.onlinestore.domain.entity.Customer;
 public interface CustomerService extends GenericService<Customer, CustomerDto, Integer> {
 	Collection<PurchaseDto> findPurchasesOfCustomer(Integer customerId);
 	BasicCustomerDto findBasicCustomerInfo(Integer customerId);
+	
+	void createVerificationToken(Integer customerId, String token);
+	CustomerDto confirmRegistration(String token);
+	
 }

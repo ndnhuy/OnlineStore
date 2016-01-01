@@ -17,15 +17,17 @@ import com.ndnhuy.onlinestore.app.dto.purchase.PurchaseDto;
 import com.ndnhuy.onlinestore.commonutils.Constant;
 import com.ndnhuy.onlinestore.commonutils.CurrentUser;
 import com.ndnhuy.onlinestore.domain.domainservice.generic.GenericServiceImpl;
-import com.ndnhuy.onlinestore.domain.entity.Address;
-import com.ndnhuy.onlinestore.domain.entity.Customer;
-import com.ndnhuy.onlinestore.domain.entity.CustomerDetail;
-import com.ndnhuy.onlinestore.domain.entity.UserRole;
+import com.ndnhuy.onlinestore.domain.entity.customer.Address;
+import com.ndnhuy.onlinestore.domain.entity.customer.Customer;
+import com.ndnhuy.onlinestore.domain.entity.customer.CustomerDetail;
+import com.ndnhuy.onlinestore.domain.entity.customer.UserRole;
+import com.ndnhuy.onlinestore.domain.entity.customer.VerificationToken;
 import com.ndnhuy.onlinestore.domain.entity.purchase.Purchase;
 import com.ndnhuy.onlinestore.domain.exception.AppException;
 import com.ndnhuy.onlinestore.domain.exception.EntityNotFoundException;
 import com.ndnhuy.onlinestore.repository.CustomerRepository;
 import com.ndnhuy.onlinestore.repository.UserRoleRepository;
+import com.ndnhuy.onlinestore.repository.VerificationTokenRepository;
 
 @Service
 @Transactional
@@ -38,6 +40,9 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepo;
 	
 	@Override
 	public CustomerDto add(CustomerDto dto) {
@@ -58,6 +63,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		customer.setUsername(dto.getUsername());
 		customer.setPassword(dto.getPassword());
 		customer.setEmail(dto.getEmail());
+		customer.setEnabled(false);
 	
 		customerRepository.saveAndFlush(customer);
 		
@@ -144,6 +150,33 @@ public class CustomerServiceImpl extends GenericServiceImpl<Customer, CustomerDt
 		BasicCustomerDto dtoBasicCustomer = mapper.map(customer, BasicCustomerDto.class);
 		
 		return dtoBasicCustomer;
+	}
+
+	@Override
+	public void createVerificationToken(Integer customerId, String token) {
+		CustomerDto dtoCustomer = findOne(customerId);
+		
+		Customer customer = new Customer();
+		customer.setId(customerId);
+		verificationTokenRepo.save(new VerificationToken(token, null, customer));
+	}
+
+	@Override
+	public CustomerDto confirmRegistration(String token) {
+		VerificationToken verificationToken = verificationTokenRepo.findByToken(token);
+		if (verificationToken == null) {
+			//TODO create confiemRegistration fail exception
+			throw new AppException(HttpStatus.UNAUTHORIZED.value(), "Your confirm token is invalid", "Your token " + token + " is invalid");
+		}
+		
+		Customer customer = verificationToken.getCustomer();
+		if (customer == null) {
+			throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Cannot retrieve customer from token " + token, "Cannot retrieve customer from token " + token);
+		}
+		
+		customer.setEnabled(true);
+		
+		return mapper.map(customer, CustomerDto.class);
 	}
 
 }

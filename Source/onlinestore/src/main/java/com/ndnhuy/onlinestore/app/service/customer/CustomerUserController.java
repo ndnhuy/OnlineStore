@@ -1,5 +1,11 @@
 package com.ndnhuy.onlinestore.app.service.customer;
 
+import java.io.IOException;
+import java.util.UUID;
+
+import javax.mail.MessagingException;
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
@@ -17,6 +23,8 @@ import com.ndnhuy.onlinestore.app.dto.customer.BasicCustomerDto;
 import com.ndnhuy.onlinestore.app.dto.customer.CustomerDto;
 import com.ndnhuy.onlinestore.commonutils.Constant;
 import com.ndnhuy.onlinestore.commonutils.CurrentUser;
+import com.ndnhuy.onlinestore.commonutils.GmailService;
+import com.ndnhuy.onlinestore.commonutils.SendMail;
 import com.ndnhuy.onlinestore.domain.domainservice.customer.CustomerService;
 
 @RestController
@@ -45,12 +53,34 @@ public class CustomerUserController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public RestSuccess register(@RequestBody CustomerDto customerDto) {
+	public RestSuccess register(@RequestBody CustomerDto customerDto) throws MessagingException, IOException {
 		logger.info("Register account " + ToStringBuilder.reflectionToString(customerDto));
 		
 		customerDto.setId(null);
 		
-		return new RestSuccess(HttpStatus.CREATED.value(), customerService.add(customerDto), 
+		// Add user info to DB with disable
+		customerDto = customerService.add(customerDto);
+		
+		// Create token, save to DB (user, token)
+		String token = UUID.randomUUID().toString();
+		customerService.createVerificationToken(customerDto.getId(), token);
+		
+		// Send email with token
+		
+		String message = "Confirm Registration";
+		String confirmLink = ServletUriComponentsBuilder.fromCurrentContextPath()
+				.path("/registryConfirm")
+				.queryParam("token", token)
+				.toUriString();
+		
+		SendMail.sendMessage(GmailService.getGmailService(), "me",
+				SendMail.createEmail(customerDto.getEmail(), 
+						"ndnhuy2504@gmail.com", 
+						"Registration Confirmation", 
+						message + " " + confirmLink));
+		 
+		
+		return new RestSuccess(HttpStatus.CREATED.value(), customerDto, 
 									"You can view the account info at " 
 											+ ServletUriComponentsBuilder.fromCurrentContextPath().path("/account").toUriString());
 		

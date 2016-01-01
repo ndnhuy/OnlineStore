@@ -3,24 +3,12 @@ package com.ndnhuy.onlinestore.config;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.HtmlExporter;
@@ -30,7 +18,6 @@ import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import net.sf.jasperreports.export.SimpleHtmlReportConfiguration;
 
 import org.apache.log4j.Logger;
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -39,6 +26,9 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.ndnhuy.onlinestore.domain.entity.customer.Customer;
+import com.ndnhuy.onlinestore.repository.CustomerRepository;
 
 
 
@@ -63,11 +53,18 @@ public class SpringApplicationRunner extends SpringBootServletInitializer {
 	    
 	    
 	    
-	 
+	    CustomerRepository repo = ctx.getBean(CustomerRepository.class);
+//	    
+//	    Customer c = new Customer();
+//	    c.setId(1);
+//	    
+//	    VerificationToken token = repo.findByToken("80dbb261-3084-4f2f-9dd6-4f214a7b2154");
+//	    
+//	    System.out.println(token.getCustomer().getUsername());
 	    
-	    
-	    
-	    
+//	    Customer c = repo.findByUsernameAndEnabled("ndnhuy2504", true);
+//	    
+//	    System.out.println(c.getUsername());
 	    
 	    
 //	    File file = new File("D:\\JREmp1.jrxml");

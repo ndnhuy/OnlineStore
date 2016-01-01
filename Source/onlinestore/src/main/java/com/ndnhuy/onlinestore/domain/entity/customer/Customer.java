@@ -1,4 +1,4 @@
-package com.ndnhuy.onlinestore.domain.entity;
+package com.ndnhuy.onlinestore.domain.entity.customer;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -41,6 +41,10 @@ public class Customer implements Serializable {
 	@Column(name="password", unique=true)
 	@NotNull
 	private String password;
+	
+	@Column(name="enabled")
+	@NotNull
+	private Boolean enabled;
 	
 	@ManyToOne
 	@JoinColumn(name="role_id")
@@ -106,6 +110,14 @@ public class Customer implements Serializable {
 
 	public void setCustomerDetail(CustomerDetail customerDetail) {
 		this.customerDetail = customerDetail;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 	
